@@ -3,12 +3,12 @@ package playground
 object algo {
 
   /*
-  
+
     // for faster read times use array, for faster insertions use linked list
     // operations are 4 - crud
     // arrays are not referentially transparent
     // if I use list, how can I solve this problem using maps/filters/for-comprehensions/pattern matching
-  
+
   class A
   (
   protected def display = ???
@@ -31,6 +31,6 @@ object algo {
   (
   a.display
   )
-  */
+   */
 
 }

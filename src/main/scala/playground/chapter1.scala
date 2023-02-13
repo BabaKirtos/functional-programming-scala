@@ -1,6 +1,6 @@
 package playground
 
-object chapter1 extends App{
+object chapter1 extends App {
 
   var capital = Map("India" -> "Delhi")
   capital += ("Japan" -> "Tokyo")

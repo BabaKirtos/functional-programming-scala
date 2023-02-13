@@ -18,9 +18,10 @@ object L2MethodNotations extends App {
     def unary_+ : Person = new Person(name, favMovie, age + 1)
     def isAlive: Boolean = true
     def learns(language: String): String = s"$name is learning $language"
-    def learnsScala: String = this learns("Scala")
+    def learnsScala: String = this learns "Scala"
     def apply(): String = s"Hi, my name is $name, I like $favMovie and I'm $age years old"
-    def apply(number: Int): String = if (number > 1) s"$movieTimes $number times" else s"$movieTimes $number time"
+    def apply(number: Int): String =
+      if (number > 1) s"$movieTimes $number times" else s"$movieTimes $number time"
   }
 
   val mary = new Person("Mary", "Inception", age = 25)

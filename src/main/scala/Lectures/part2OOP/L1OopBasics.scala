@@ -17,7 +17,7 @@ object test extends App {
 
 // constructor
 // class parameters are NOT FIELDS unless used with val/var
-class Person(name: String, val age: Int) { 
+class Person(name: String, val age: Int) {
 
   // body is not an expression but defines the class
   val x = 2

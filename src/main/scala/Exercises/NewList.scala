@@ -1,6 +1,6 @@
 package Exercises
 
-object NewList extends App{
+object NewList extends App {
 
   abstract class NewList {
     def head: Int
@@ -31,7 +31,7 @@ object NewList extends App{
       else new ConsList(h, t.addBack(element))
     }
     def printElements: String =
-      if(t.isEmpty) "" + h
+      if (t.isEmpty) "" + h
       else h + " " + t.printElements
   }
 

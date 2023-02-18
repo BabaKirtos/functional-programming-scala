@@ -16,8 +16,8 @@ object NewList extends App {
     def head: Int = throw new NoSuchElementException
     def tail: NewList = throw new NoSuchElementException
     def isEmpty: Boolean = true
-    def add(element: Int): NewList = new ConsList(element, emptyList)
-    def addBack(element: Int): NewList = new ConsList(element, emptyList)
+    def add(element: Int): NewList = new ConsList(element, this)
+    def addBack(element: Int): NewList = new ConsList(element, this)
     def printElements: String = ""
   }
 

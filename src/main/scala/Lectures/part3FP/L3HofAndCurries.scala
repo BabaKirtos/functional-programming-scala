@@ -17,11 +17,11 @@ object L3HofAndCurries extends App {
     if (n <= 0) (x: Int) => x
     else (x: Int) => nTimes(f, n - 1)(f(x))
   }
-  println(nTimes(_ * 2, 4)(2))
-  // for n = 4, (x: Int) => nTimes(f, 4 - 1)(f(16)) => 32
-  // for n = 3, (x: Int) => nTimes(f, 3 - 1)(f(8)) => 16
-  // for n = 2, (x: Int) => nTimes(f, 2 - 1)(f(4)) => 8
-  // for n = 1, (x: Int) => nTimes(f, 1 - 1)(f(2)) => 4
+  println(nTimes(_ * 2, 0)(2))
+  // for n = 4, (x: Int) => nTimes(f, 4 - 1)(f(2)) => 4
+  // for n = 3, (x: Int) => nTimes(f, 3 - 1)(f(4)) => 8
+  // for n = 2, (x: Int) => nTimes(f, 2 - 1)(f(8)) => 16
+  // for n = 1, (x: Int) => nTimes(f, 1 - 1)(f(16)) => 32
   // for n = 0, (x: Int) => x
 
   @tailrec

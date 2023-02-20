@@ -18,9 +18,15 @@ object L6Generics extends App {
     def add[B >: A](element: B): MyList[B] = ???
   }
 
+  object MyList {
+    def empty[A]: MyList[A] = ???
+  }
+
+  val emptyList = MyList.empty[Int]
+
   class MyMap[Key, Value] // multiple generic parameters
 
-  val lisOfIntegers = new MyList[Int]
+  val listOfIntegers = new MyList[Int]
   val listOfStrings = new MyList[String]
 
   // generic methods

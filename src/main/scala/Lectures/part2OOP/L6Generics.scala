@@ -29,12 +29,6 @@ object L6Generics extends App {
   val listOfIntegers = new MyList[Int]
   val listOfStrings = new MyList[String]
 
-  // generic methods
-//  object MyList {
-//    def empty[A]: MyList[A] = ???
-//  }
-//  val emptyListOfInt = MyList.empty[Int]
-
   // variance problem
   class Animal
   class Cat extends Animal

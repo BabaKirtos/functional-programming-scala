@@ -31,6 +31,9 @@ object L3HofAndCurries extends App {
   }
   println(nTimesAns(_ * 2, 4, 2))
 
+  val plusOne = (x: Int) => x + 1
+  println(nTimesAns(plusOne, 10, 2))
+
   // curried functions
   val superAdder: Int => Int => Int = (x: Int) => (y: Int) => x + y
   val add3 = superAdder(3) // y => 3 + y

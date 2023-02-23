@@ -38,6 +38,12 @@ object L3HofAndCurries extends App {
   val superAdder: Int => Int => Int = (x: Int) => (y: Int) => x + y
   val add3 = superAdder(3) // y => 3 + y
   println(add3(5))
+  println(superAdder(8)(9))
+
+  // Kunal's question
+  def functionAdder(f: Int => Int)(x: Int)(y: Int): Int = f(x) + f(y)
+//  val functionAdder: (Int => Int) => Int => Int => Int = (f: Int => Int) => (x: Int) => (y: Int) => f(x) + f(y)
+  println(functionAdder(x => x * x * x)(2)(3) + " <---")
 
   // currying
   // functions with multiple parameters list

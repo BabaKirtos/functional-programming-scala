@@ -82,5 +82,24 @@ object playground {
     val minSize = newArray.map(_.length).min
     println(minSize)
 
+    // print all combinations between 2 lists
+    val numbers = List(1,2,3,4)
+    val chars = List('a','b','c','d')
+    val colors = List("Red","Green","Blue","Violet")
+
+    // output -> List('a1Red','a2Red',....,'d4Violet')
+
+    val test = chars.flatMap(x => numbers.map(y => "" + x + y))
+    println(test)
+
+    val combinations = colors.flatMap(col => chars.flatMap(c => numbers.map(n => "" + c + n + "-" + col)))
+    println(combinations)
+
+    val forCombinations = for {
+      c <- chars
+      col <- colors
+      n <- numbers
+    } yield "" + c + n + "-" + col
+    println(forCombinations)
   }
 }

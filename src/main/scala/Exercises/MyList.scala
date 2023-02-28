@@ -82,7 +82,17 @@ case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
   def fold[B](start: B)(f: (A, B) => B): B = {
     t.fold(f(h, start))(f)
   }
+  
+}
 
+object Cons {
+  def apply[A](elems: A*): MyList[A] = {
+    def creator(elems: Seq[A], counter: Int = 0, list: MyList[A] = Empty): MyList[A] = {
+      if (counter == elems.length) list
+      else creator(elems, counter + 1, list ++ new Cons[A](h = elems(counter), t = Empty))
+    }
+    creator(elems)
+  }
 }
 
 //trait MyPredicate[-T] {
@@ -100,8 +110,11 @@ object ListTest extends App {
   val listOfStrings: MyList[String] =
     new Cons("Hi", new Cons("Hello", new Cons("new", new Cons("back", Empty))))
 
+  val newList = Cons[Int](1,2,3)
+  newList.foreach(println)
+
   // hof - foreach
-  listOfIntegers.foreach((x: Int) => println(x))
+//  listOfIntegers.foreach((x: Int) => println(x))
   // hof - sort
   println(listOfIntegers.sort((x, y) => y - x).toStr)
 

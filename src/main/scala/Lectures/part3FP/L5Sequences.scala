@@ -5,6 +5,8 @@ import scala.util.Random
 object L5Sequences extends App {
 
   // Seq
+  // they have well defined order
+  // they are indexed
   val aSeq = Seq(1, 3, 2, 4)
   println(aSeq)
   println(aSeq.indices)

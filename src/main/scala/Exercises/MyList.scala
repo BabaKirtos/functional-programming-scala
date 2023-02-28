@@ -105,16 +105,12 @@ object Cons {
 
 object ListTest extends App {
 
-  val listOfIntegers: MyList[Int] = new Cons(1, new Cons(2, new Cons(3, new Cons(4, Empty))))
-  val listOfIntegers1: MyList[Int] = new Cons(1, new Cons(2, new Cons(3, new Cons(4, Empty))))
-  val listOfStrings: MyList[String] =
-    new Cons("Hi", new Cons("Hello", new Cons("new", new Cons("back", Empty))))
-
-  val newList = Cons[Int](1,2,3)
-  newList.foreach(println)
+  val listOfIntegers: MyList[Int] = Cons(1,2,3,4)
+  val listOfIntegers1: MyList[Int] = Cons(5,6,7,8)
+  val listOfStrings: MyList[String] = Cons("Hi","Hello","World","Now")
 
   // hof - foreach
-//  listOfIntegers.foreach((x: Int) => println(x))
+  listOfIntegers.foreach((x: Int) => println(x))
   // hof - sort
   println(listOfIntegers.sort((x, y) => y - x).toStr)
 

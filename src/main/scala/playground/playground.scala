@@ -83,16 +83,17 @@ object playground {
     println(minSize)
 
     // print all combinations between 2 lists
-    val numbers = List(1,2,3,4)
-    val chars = List('a','b','c','d')
-    val colors = List("Red","Green","Blue","Violet")
+    val numbers = List(1, 2, 3, 4)
+    val chars = List('a', 'b', 'c', 'd')
+    val colors = List("Red", "Green", "Blue", "Violet")
 
     // output -> List('a1Red','a2Red',....,'d4Violet')
 
     val test = chars.flatMap(x => numbers.map(y => "" + x + y))
     println(test)
 
-    val combinations = colors.flatMap(col => chars.flatMap(c => numbers.map(n => "" + c + n + "-" + col)))
+    val combinations =
+      colors.flatMap(col => chars.flatMap(c => numbers.map(n => "" + c + n + "-" + col)))
     println(combinations)
 
     val forCombinations = for {
@@ -101,5 +102,22 @@ object playground {
       n <- numbers
     } yield "" + c + n + "-" + col
     println(forCombinations)
+
+    val device = Set("PCM", "AM53")
+    device.foreach(println)
+
+    val test2 = Set("", "1")
+
+    println("".isEmpty)
+
+
+//    first page
+//      Map("AREA" ***> Vector(MetricView(can_ag_5,AREA,num,Some(CP),Some(Engine),Some(AREA),None,last,Some(num),Some(HA),Some(1),Some(Area),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0))), "ENG_SPEED" ***> Vector(MetricView(can_ag_1,ENG_SPEED,num,Some(CP),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)), MetricView(can_mh_1,ENG_SPEED,num,Some(MH),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0))), "FUEL RATE 2" ***> Vector(MetricView(can_ag_4,FUEL RATE 2,num,Some(MH),Some(Engine),Some(FUEL_RATE),None,none,Some(num),Some(L/H),Some(3),Some(Fuel rate),false,Some(0.0),Some(0.5),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)))) was not equal to
+//      Map("AREA" ***> List(MetricView(can_ag_5,AREA,num,Some(CP),Some(Engine),Some(AREA),None,last,Some(num),Some(HA),Some(1),Some(Area),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0))), "ENG_SPEED" ***> List(MetricView(can_ag_1,ENG_SPEED,num,Some(CP),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)), MetricView(can_mh_1,ENG_SPEED,num,Some(MH),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)), MetricView(can_ag_1_2,ENG_SPEED,num,Some(CP),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(AM53),Some(List(b, c, e)),Some(0.0),Some(0.0))), "FUEL RATE 2" ***> List(MetricView(can_ag_4,FUEL RATE 2,num,Some(MH),Some(Engine),Some(FUEL_RATE),None,none,Some(num),Some(L/H),Some(3),Some(Fuel rate),false,Some(0.0),Some(0.5),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)))) (PgMetricRepoSpec.scala:64)
+
+//    by name
+//      Map("ENG_SPEED" ***> Vector(MetricView(can_ag_1,ENG_SPEED,num,Some(CP),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)), MetricView(can_mh_1,ENG_SPEED,num,Some(MH),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0))), "GROUND_SPEED" ***> Vector(MetricView(can_ag_2,GROUND_SPEED,num,Some(CP),Some(Engine),Some(GROUND_SPEED),None,last,Some(num),Some(KM/H),Some(2),Some(Ground Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)))) was not equal to
+//      Map("ENG_SPEED" ***> List(MetricView(can_ag_1,ENG_SPEED,num,Some(CP),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)), MetricView(can_mh_1,ENG_SPEED,num,Some(MH),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)), MetricView(can_ag_1_2,ENG_SPEED,num,Some(CP),Some(Engine),Some(ENG_SPEED),None,last,Some(num),Some(RPM),Some(1),Some(Engine Speed),false,Some(0.0),Some(1.0),None,None,Some(AM53),Some(List(b, c, e)),Some(0.0),Some(0.0))), "GROUND_SPEED" ***> List(MetricView(can_ag_2,GROUND_SPEED,num,Some(CP),Some(Engine),Some(GROUND_SPEED),None,last,Some(num),Some(KM/H),Some(2),Some(Ground Speed),false,Some(0.0),Some(1.0),None,None,Some(PCM),Some(List(a, b, c)),Some(0.0),Some(0.0)))) (PgMetricRepoSpec.scala:79)
+
   }
 }

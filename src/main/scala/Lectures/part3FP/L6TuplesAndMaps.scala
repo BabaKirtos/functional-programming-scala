@@ -8,8 +8,9 @@ object L6TuplesAndMaps extends App {
   // type is Tuple2[Int, String] = (Int, String)
   // can be grouped with 22 types , like function types
   val aTuple = (2, "hello scala")
-  // 1 indexed
+  // 0 indexed is written with _1
   println(aTuple._1)
+  println(aTuple(0))
   // copy method
   println(aTuple.copy(_2 = "goodbye java"))
   // swap

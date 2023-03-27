@@ -1,0 +1,19 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(all {file:/Users/abhishekroy.chowdhary/udemy-scala-beginners-new/}root/products {file:/Users/abhishekroy.chowdhary/udemy-scala-beginners-new/}root/test:products, None, None)[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / products, Test / products[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /Users/abhishekroy.chowdhary/udemy-scala-beginners-new/target/scala-3.1.2/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m[31m-- [E008] Not Found Error: /Users/abhishekroy.chowdhary/udemy-scala-beginners-new/src/main/scala/Lectures/part3FP/L5Sequences.scala:37:18 [0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m  println(apples5 + [31m" <- apples"[0m)[0m
+[0m[[0m[31merror[0m] [0m[0m   |          [31m^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m   |value + is not a member of List[String], but could be made available as an extension method.[0m
+[0m[[0m[31merror[0m] [0m[0m   |[0m
+[0m[[0m[31merror[0m] [0m[0m   |One of the following imports might make progress towards fixing the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m   |[0m
+[0m[[0m[31merror[0m] [0m[0m   |  import math.Fractional.Implicits.infixFractionalOps[0m
+[0m[[0m[31merror[0m] [0m[0m   |  import math.Integral.Implicits.infixIntegralOps[0m
+[0m[[0m[31merror[0m] [0m[0m   |  import math.Numeric.Implicits.infixNumericOps[0m
+[0m[[0m[31merror[0m] [0m[0m   |[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 1 s, completed 05-Mar-2023, 9:10:33 PM[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(idea-shell, None, None)[0m

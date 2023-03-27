@@ -1,0 +1,16 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(all {file:/Users/abhishekroy.chowdhary/udemy-scala-beginners-new/}root/products {file:/Users/abhishekroy.chowdhary/udemy-scala-beginners-new/}root/test:products, None, None)[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / products, Test / products[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 5 Scala sources to /Users/abhishekroy.chowdhary/udemy-scala-beginners-new/target/scala-3.1.2/classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m-- [E121] Pattern Match Warning: /Users/abhishekroy.chowdhary/udemy-scala-beginners-new/src/main/scala/Lectures/part4PatternMatching/L2AllThePatterns.scala:84:9 [0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m84 |[0m    [33mcase[0m _                           => [31m"empty list"[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m   |         [33m^[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m   |Unreachable case except for [31mnull[0m (if this is intentional, consider writing [33mcase[0m [31mnull[0m => instead).[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m-- Unchecked Warning: /Users/abhishekroy.chowdhary/udemy-scala-beginners-new/src/main/scala/Lectures/part4PatternMatching/L2AllThePatterns.scala:82:9 [0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m82 |[0m    [33mcase[0m listOfStrings: List[String] => [31m"a list of strings"[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m   |         [33m^[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m   |         the type test for List[String] cannot be checked at runtime[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 4 s, completed 01-Mar-2023, 6:19:08 PM[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(idea-shell, None, None)[0m

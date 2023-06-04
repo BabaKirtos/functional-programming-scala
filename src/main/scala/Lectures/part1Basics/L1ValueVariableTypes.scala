@@ -2,6 +2,22 @@ package Lectures.part1Basics
 
 object L1ValueVariableTypes extends App {
 
+  // Below is a perfectly good example of functions as first class citizens and
+  // how to use higher order functions to create a new list
+  val addNew: (Int, Int) => Int = (x, y) => x + y
+  val multiplyNew: (Int, Int) => Int = (x, y) => x * y
+  val operations: List[(Int, Int) => Int] = List(addNew, multiplyNew)
+  val inputList = List((1, 2), (3, 4), (5, 6), (7, 8))
+  val ouputMapList = inputList.map { case (a, b) => operations.map(_(a, b)) }
+  val ouputFlatMapList = inputList.flatMap { case (a, b) => operations.map(_(a, b)) }
+  println(operations) // You get a List with 2 elements which are pointers to a function (addNew, multiplyNew)
+  println(ouputMapList) // Each element of inputList will return a List
+  println(ouputFlatMapList) // We flatten the inner elements to get one outer List
+
+  val y = (a: Int) => a * 2 // Inferred type of Int => Int
+  println(y)
+  println(y(2)) // think in terms of pointer, like pointer to a function
+
   val x: Int = 42
   println(x)
 
@@ -19,7 +35,7 @@ object L1ValueVariableTypes extends App {
   println(aString.filter(_ == 'H'))
   aString.foreach(println(_))
 
-  val aNewString: Unit = for {
+  for {
     a <- aString
   } println(a.toUpper)
 

@@ -19,11 +19,12 @@ object L1PatternMatching extends App {
 
   // 1. Decompose values
   case class Person(name: String, age: Int)
-  val bob = new Person("Bob", 20)
+  val bob = Person("Bob", 22)
 
   val greeting = bob match {
-    case Person(n, a) if a < 21 => s"Hi $n, you are $a years old"
-    case _                      => "I don't know who I am"
+    case Person(n, a) if a < 21 => s"Hi $n, you are $a years old - 1"
+    case Person(n, a) if a > 21 => s"Hi $n, you are $a years old - 2"
+    case _ => "I don't know my age"
   }
   println(greeting)
   // cases are matched in order

@@ -105,6 +105,10 @@ object Cons {
 
 object ListTest extends App {
 
+  val newList = List(1,2,3)
+  val b = newList.map(x => x + " Hi")
+  println(b)
+
   val listOfIntegers: MyList[Int] = Cons(1,2,3,4)
   val listOfIntegers1: MyList[Int] = Cons(5,6,7,8)
   val listOfStrings: MyList[String] = Cons("Hi","Hello","World","Now")

@@ -4,7 +4,7 @@ object L1ValueVariableTypes extends App {
 
   // Below is a perfectly good example of functions as first class citizens and
   // how to use higher order functions to create a new list
-  val addNew: (Int, Int) => Int = (x, y) => x + y
+  val addNew = (x: Int, y: Int) => x + y
   val multiplyNew: (Int, Int) => Int = (x, y) => x * y
   val operations: List[(Int, Int) => Int] = List(addNew, multiplyNew)
   val inputList = List((1, 2), (3, 4), (5, 6), (7, 8))

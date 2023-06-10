@@ -12,6 +12,10 @@
 [0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	L1ValueVariableTypes.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	L1ValueVariableTypes$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Basics$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Basics.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	L1ValueVariableTypes.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0m	L1ValueVariableTypes$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Basics$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Basics.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /Users/abhishekroy.chowdhary/udemy-scala-beginners-new/target/scala-3.1.2/classes.bak[0m

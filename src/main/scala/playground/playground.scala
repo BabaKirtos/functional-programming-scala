@@ -178,5 +178,41 @@ object playground {
 
       HelperZ(nums, 0, 0)
     }
+
+    def myFunc(ele: List[Any]): (List[Int], List[Float], List[String]) = {
+
+      def Helper(elem: List[Any], intA: List[Int] = Nil, floatA: List[Float] = Nil, stringA: List[String] = Nil): (List[Int], List[Float], List[String]) = {
+        elem match {
+          case Nil => (intA.reverse, floatA.reverse, stringA.reverse)
+          case head :: tail => head match
+            case x: Int => Helper(tail, x :: intA, floatA, stringA)
+            case x: Float => Helper(tail, intA, x :: floatA, stringA)
+            case x: String => Helper(tail, intA, floatA, x :: stringA)
+            case _ => Helper(tail, intA, floatA, stringA)
+        }
+      }
+
+      Helper(ele, Nil, Nil, Nil)
+    }
+
+
+    val myList = List(1, 2.5f, "hello", 3.14f, "world", 42)
+    val result2 = myFunc(myList)
+    println(result2)
+
+    case class A(value: Int) {
+      override def hashCode(): Int = 1
+
+      override def equals(obj: Any): Boolean = true
+    }
+
+    val a1 = A(1)
+    val a2 = A(2)
+    val a3 = A(3)
+
+    val newMap = Map(a1 -> 1, a2 -> 2, a3 -> 3)
+
+    println(newMap)
+    println(a1 == a2)
   }
 }

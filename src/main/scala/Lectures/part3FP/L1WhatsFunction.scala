@@ -54,11 +54,11 @@ object L1WhatsFunction extends App {
 
   // Function1[ Int, Function1[Int, Int]] this is a higher order function
   // old way
-//  val superAdder: (Int) => (Int => Int) = new Function1[Int, Function1[Int, Int]] {
-//    override def apply(x: Int): Function1[Int, Int] = new Function1[Int, Int] {
-//      override def apply(y: Int): Int = x + y
-//    }
-//  }
+  val superAdderOld: (Int) => (Int => Int) = new Function1[Int, Function1[Int, Int]] {
+    override def apply(x: Int): Function1[Int, Int] = new Function1[Int, Int] {
+      override def apply(y: Int): Int = x + y
+    }
+  }
 
   // lambda style
 //  val superAdder: (Int) => (Int => Int) = (x: Int) => (y: Int) => x + y

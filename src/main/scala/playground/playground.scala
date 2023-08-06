@@ -214,5 +214,12 @@ object playground {
 
     println(newMap)
     println(a1 == a2)
+
+    val listOfTuple: List[(Int, String)] = List((1,"Hi"),(2,"My"),(3,"Name"),(4,"is"),(5,"SlimShady"))
+    val (intList, stringList) = listOfTuple.unzip
+    val reducedIntList = intList.reduce((s1, s2) => s1 + s2)
+    println(stringList)
+    println(reducedIntList)
+
   }
 }

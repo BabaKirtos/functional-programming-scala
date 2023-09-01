@@ -4,4 +4,4 @@ ThisBuild / scalaVersion := "3.1.2"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "udemy-scala-beginners-new")
+    name := "functional-programming-scala")

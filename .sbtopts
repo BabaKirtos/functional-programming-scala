@@ -1,0 +1,7 @@
+-J-XX:MaxMetaspaceSize=1280M
+-J-Xmx2560M
+-J-Xss4M
+-J-XX:+UseG1GC
+-J-XX:MaxInlineLevel=18
+-J-XX:MinHeapFreeRatio=10
+-J-XX:MaxHeapFreeRatio=20

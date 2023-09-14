@@ -10,7 +10,7 @@ object CaffeineCacheTest {
       .maximumSize(1) // Maximum number of entries in the cache
       .buildAsync()
 
-    // Initialize the cache with a key "key" and an initial value of 5
+    // Initialize the cache with a key "key" and an initial value of 99
     val initialValue = 99
     val key = "key"
     val initialFuture = CompletableFuture.completedFuture(initialValue)

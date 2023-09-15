@@ -3,7 +3,7 @@ package playground
 import com.github.benmanes.caffeine.cache.{Caffeine, AsyncCache}
 import java.util.concurrent.{CompletableFuture, TimeUnit}
 
-object CaffeineCacheTest {
+object CaffeineAsyncCacheTest {
   def main(args: Array[String]): Unit = {
     // Create a Caffeine cache with asynchronous loading
     val cache: AsyncCache[String, Int] = Caffeine.newBuilder()
@@ -70,13 +70,28 @@ object CaffeineCacheTest {
       println(s"$threadName: trying to get cache value ${cache.get("key", k => 0).get()}")
     })
 
-    // Start thread 1 and thread 2
+    // Create thread 2 to get and put values in async
+    val getPutThread3 = new Thread(() => {
+      val threadName = Thread.currentThread().getName
+
+      println(s"$threadName: starting, sleeping for 1 second")
+      TimeUnit.SECONDS.sleep(1)
+      println(s"$threadName: waiting for other thread to complete")
+      println(s"$threadName: getting value for $key from cache ${cache.get("key", k => 0).get()}")
+      println(s"$threadName: putting value 200 in $key")
+      cache.synchronous().put("key", 200)
+      println(s"$threadName: getting value for $key from cache ${cache.get("key", k => 0).get()}")
+    })
+
+    // Start thread 1, thread 2 and thread 3
     modifyThread1.start()
     modifyThread2.start()
+    getPutThread3.start()
 
-    // Wait for both threads to complete
+    // Wait for all threads to complete
     modifyThread1.join()
     modifyThread2.join()
+    getPutThread3.join()
 
     // Retrieve and print the final value from the cache
     val finalValue = cache.get(key, k => 0).get()
@@ -84,4 +99,3 @@ object CaffeineCacheTest {
     println(s"Final value for $key: $finalValue")
   }
 }
-

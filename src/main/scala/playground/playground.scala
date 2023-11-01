@@ -221,5 +221,21 @@ object playground {
     println(stringList)
     println(reducedIntList)
 
+    // Define a partial function that checks if a number is prime
+    val isPrime: PartialFunction[Int, Boolean] = {
+      case n if n > 1 && (2 until n).forall(i => n % i != 0) => true
+    }
+
+    // Define a function that calculates the sum of prime numbers in a list
+    def sumOfPrimes(numbers: List[Int]): Int = {
+      numbers.collect {
+        case n if isPrime.isDefinedAt(n) && isPrime(n) => n
+      }.sum
+    }
+
+    val inputList = List(2, 3, 4, 5, 6, 7, 8, 9, 10)
+    val sum = sumOfPrimes(inputList)
+    println(s"Input List: $inputList")
+    println(s"Sum of Prime Numbers: $sum")
   }
 }

@@ -237,5 +237,41 @@ object playground {
     val sum = sumOfPrimes(inputList)
     println(s"Input List: $inputList")
     println(s"Sum of Prime Numbers: $sum")
+
+    // Cursor sample, if condition is true then even, else odd
+    def someList(input: List[Int], condition: Boolean, limit: Int, cursor: Option[Int] = None): (List[Int], Option[Int]) = {
+      import scala.util.Random
+
+      @tailrec
+      def helper(acc: List[Int], currentIndex: Int = 0): (List[Int], Int) = {
+        if (acc.size == limit || currentIndex >= input.size)
+          (acc, currentIndex + 1)
+        else {
+          val slicedElements = input.slice(currentIndex, currentIndex + limit)
+          val filteredElements =
+            if (condition) slicedElements.filter(_ % 2 == 0)
+            else slicedElements.filterNot(_ % 2 == 0)
+          helper(acc ++ filteredElements, currentIndex + limit)
+        }
+      }
+
+      val (resultList, currentIndex) = helper(Nil, cursor.getOrElse(0))
+
+      if (currentIndex >= input.size) (resultList, None)
+      else (resultList, Some(currentIndex))
+    }
+
+    // Example usage:
+    val numList = (1 to 50).toList
+    println(someList(numList, condition = true, limit = 5))
+    println(someList(numList, condition = true, 5, Some(11)))
+    println(someList(numList, condition = true, 5, Some(46)))
+
+    def concatenateN(n: Int, s: String): String =
+      if (n <= 0) "!!"
+      else s + concatenateN(n-1, s)
+
+    println(concatenateN(3, "Hi"))
+
   }
 }

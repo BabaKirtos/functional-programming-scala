@@ -23,8 +23,12 @@ object L2AnonFunctions extends App {
   println(doubleOld(3))
 
   // this is an anonymous function (LAMBDA functions)
-  val doublerNew: Int => Int = (x: Int) => x * 2
+  // with type annotation we do not need to specify type of x
+  val doublerNew: Int => Int = x => x * 2
   println(doublerNew(3))
+
+  // even better way to define doubler, but we need type annotation here
+  val doublerSugar: Int => Int = _ * 2
 
   // Old way
   val adderOld: (Int, Int) => Int = new Function2[Int, Int, Int] {

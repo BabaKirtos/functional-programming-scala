@@ -1,4 +1,4 @@
-package BasicLectures.part5AdvancedScala
+package AdvancedLectures.part1
 
 import java.awt.Composite
 import scala.annotation.targetName

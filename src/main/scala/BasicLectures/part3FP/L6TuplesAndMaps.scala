@@ -17,6 +17,11 @@ object L6TuplesAndMaps extends App {
   // swap
   println(aTuple.swap)
 
+  def aFunc(a: Int, b: String): Unit = println("" + a + b)
+  // Below 2 are same
+  aFunc.tupled(aTuple)
+  aFunc(aTuple._1, aTuple._2)
+
   // Maps - keys -> values
   val aMap: Map[String, Int] = Map()
   // phonebook

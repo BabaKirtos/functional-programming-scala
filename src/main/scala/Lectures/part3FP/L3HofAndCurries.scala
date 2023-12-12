@@ -31,6 +31,8 @@ object L3HofAndCurries extends App {
   }
   println(nTimesAns(_ * 2, 4, 2))
 
+  println(List(1,2,3).flatMap(List(_)))
+
   val plusOne = (x: Int) => x + 1
   println(nTimesAns(plusOne, 10, 2))
 

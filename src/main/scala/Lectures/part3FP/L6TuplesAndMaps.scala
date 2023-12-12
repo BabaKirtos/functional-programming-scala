@@ -11,6 +11,7 @@ object L6TuplesAndMaps extends App {
   // 0 indexed is written with _1
   println(aTuple._1)
   println(aTuple(0))
+  println(aTuple(1))
   // copy method
   println(aTuple.copy(_2 = "goodbye java"))
   // swap

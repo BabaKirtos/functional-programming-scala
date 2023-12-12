@@ -57,8 +57,8 @@ object L5Sequences extends App {
   println(aVector)
 
   // performance test: Vectors vs Lists
-  val maxRuns = 1000
-  val maxCapacity = 1000000
+  val maxRuns = 1000 // number of runs
+  val maxCapacity = 1000000 // max index of the collect
 
   def getWriteTime(collection: Seq[Int]): Double = {
     val r = new Random

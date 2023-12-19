@@ -39,7 +39,8 @@ object L7Options extends App {
   // functions on Options
   println(myFirstOption.isEmpty)
   println(myFirstOption.get)
-//  println(noValue.get) // VERY DANGEROUS ON Option - DO NOT USE
+//  println(noValue.get) // VERY DANGEROUS ON Option - DO NOT USE, Instead:
+  println(noValue.getOrElse(-1))
 
   // map, flatMap, filter
   println(myFirstOption.map(_ * 2))

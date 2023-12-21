@@ -51,11 +51,6 @@ object L7Options extends App {
 
   // for-comprehensions
   // Exercise
-  val config: Map[String, String] = Map(
-    // fetched from somewhere else
-    "host" -> "176.45.36.1",
-    "port" -> "80")
-
   class Connection {
     def connect = "Connected" // would connect to some server
   }
@@ -69,8 +64,14 @@ object L7Options extends App {
   }
 
   // try to establish a connection
+  val config: Map[String, String] = Map(
+    // fetched from somewhere else
+    "host" -> "176.45.36.1",
+    "port" -> "80")
+
   val host = config.get("host")
   val port = config.get("port")
+
   val connection = host.flatMap(h => port.flatMap(p => Connection.apply(h, p)))
   val connectionStatus = connection.map(c => c.connect)
   println(connectionStatus)

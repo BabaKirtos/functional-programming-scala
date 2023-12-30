@@ -1,4 +1,4 @@
-package FunctionalProgramming
+package FPInScalaBook
 
 import scala.annotation.tailrec
 

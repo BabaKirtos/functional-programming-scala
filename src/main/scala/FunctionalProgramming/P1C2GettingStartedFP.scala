@@ -87,6 +87,18 @@ object P1C2GettingStartedFP {
     loop(0)
   }
 
+  def partial1[A, B, C](a: A, f: (A, B) => C): B => C =
+    (b: B) => f(a, b)
+
+  def curry[A, B, C](f: (A, B) => C): A => B => C =
+    (a: A) => (b: B) => f(a, b)
+
+  def uncurry[A, B, C](f: A => B => C): (A, B) => C =
+    (a: A, b: B) => f(a)(b)
+
+  def compose[A, B, C](f: B => C, g: A => B): A => C =
+    (a: A) => f(g(a))
+
   // our main method is an outer shell that calls into our purely functional core
   def main(args: Array[String]): Unit = {
 
@@ -105,13 +117,10 @@ object P1C2GettingStartedFP {
     val arr1 = Array(1, 2, 3, 4, 5)
     val arr2 = Array(5, 4, 3, 2, 1)
 
-    val ascendingOrder: (Int, Int) => Boolean = (a, b) => a <= b
-    val descendingOrder: (Int, Int) => Boolean = (a, b) => a >= b
-
-    println(isSorted(arr1, ascendingOrder)) // Output: true
-    println(isSorted(arr1, descendingOrder)) // Output: false
-    println(isSorted(arr2, descendingOrder)) // Output: true
-    println(isSorted(arr2, ascendingOrder)) // Output: false
+    println(isSorted(arr1, _ <= _)) // Output: true
+    println(isSorted(arr1, _ >= _)) // Output: false
+    println(isSorted(arr2, _ >= _)) // Output: true
+    println(isSorted(arr2, _ <= _)) // Output: false
   }
 
   /*

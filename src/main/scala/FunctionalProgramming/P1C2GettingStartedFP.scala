@@ -2,7 +2,7 @@ package FunctionalProgramming
 
 import scala.annotation.tailrec
 
-object P1C1Introduction {
+object P1C2GettingStartedFP {
 
   // A comment!
   /* Multi-line
@@ -62,6 +62,31 @@ object P1C1Introduction {
     msg.format(s, n, f(n))
   }
 
+  /*
+  * Often, and especially when writing HOFs, we want to write code
+  * that works for any type it’s given. These are called polymorphic functions.
+  * */
+  def findFirstIndex[A](data: Array[A], p: A => Boolean): Int = {
+    @tailrec
+    def loop(n: Int): Int =
+      if (n >= data.length) -1
+      else if (p(data(n))) n
+      else loop(n + 1)
+
+    loop(0)
+  }
+
+  def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = {
+    @tailrec
+    def loop(index: Int): Boolean = {
+      if (index >= as.length - 1) true
+      else if (!ordered(as(index), as(index + 1))) false
+      else loop(index + 1)
+    }
+
+    loop(0)
+  }
+
   // our main method is an outer shell that calls into our purely functional core
   def main(args: Array[String]): Unit = {
 
@@ -72,6 +97,21 @@ object P1C1Introduction {
     println(formatResult("absolute", -42, abs))
     println(formatResult("factorial", 7, factorial))
     println(formatResult("fibonacci", 10, fibonacci))
+
+    println(findFirstIndex(Array(0, 1, 2, 3, 4), _ % 2 == 0))
+    println(findFirstIndex(Array("Hi", "Bye", "wifi", "Neel", "Babu"), _.contains("Babu")))
+
+    // testing isSorted
+    val arr1 = Array(1, 2, 3, 4, 5)
+    val arr2 = Array(5, 4, 3, 2, 1)
+
+    val ascendingOrder: (Int, Int) => Boolean = (a, b) => a <= b
+    val descendingOrder: (Int, Int) => Boolean = (a, b) => a >= b
+
+    println(isSorted(arr1, ascendingOrder)) // Output: true
+    println(isSorted(arr1, descendingOrder)) // Output: false
+    println(isSorted(arr2, descendingOrder)) // Output: true
+    println(isSorted(arr2, ascendingOrder)) // Output: false
   }
 
   /*

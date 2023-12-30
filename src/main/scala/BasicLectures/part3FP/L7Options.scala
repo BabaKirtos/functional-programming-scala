@@ -65,14 +65,14 @@ object L7Options extends App {
 
   // try to establish a connection
   val config: Map[String, String] = Map(
-    // fetched from somewhere else
+    // fetched from somewhere else, host and port values might not be available
     "host" -> "176.45.36.1",
     "port" -> "80")
 
   val host = config.get("host")
   val port = config.get("port")
 
-  val connection = host.flatMap(h => port.flatMap(p => Connection.apply(h, p)))
+  val connection = host.flatMap(h => port.flatMap(p => Connection(h, p)))
   val connectionStatus = connection.map(c => c.connect)
   println(connectionStatus)
   connectionStatus.foreach(println)
@@ -82,7 +82,7 @@ object L7Options extends App {
     .flatMap(h =>
       config.get("port")
         .flatMap(p =>
-          Connection.apply(h, p)
+          Connection(h, p)
             .map(c => c.connect)))
     .foreach(println)
 
@@ -90,7 +90,7 @@ object L7Options extends App {
   val forConnectionStatus = for {
     h <- config.get("host")
     p <- config.get("port")
-    connection <- Connection.apply(h, p)
+    connection <- Connection(h, p)
   } yield connection.connect
 
   forConnectionStatus.foreach(println)

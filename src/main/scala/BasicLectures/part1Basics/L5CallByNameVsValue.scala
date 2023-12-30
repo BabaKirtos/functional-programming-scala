@@ -36,4 +36,22 @@ object L5CallByNameVsValue extends App {
   // the by name call delays the evaluation of the function till it is used
   // that's why the system does not crash
 
+  // example of closure in scala
+  // Function that takes an integer and returns a closure
+  def multiplier(factor: Int): Int => Int = {
+    // Closure: Takes an integer x and multiplies it by the factor
+    (x: Int) => x * factor
+  }
+
+  // Create closures with different factors
+  val multiplyByTwo = multiplier(2)
+  val multiplyByThree = multiplier(3)
+
+  // Use closures
+  val result1 = multiplyByTwo(5) // 5 * 2 = 10
+  val result2 = multiplyByThree(5) // 5 * 3 = 15
+
+  // Print results
+  println(s"Result 1: $result1")
+  println(s"Result 2: $result2")
 }

@@ -1,5 +1,6 @@
 package BasicLectures.part3FP
 
+import scala.language.implicitConversions
 import scala.util.Random
 
 object L7Options extends App {
@@ -17,7 +18,7 @@ object L7Options extends App {
   // calling this API would throw an exception
   def unsafeMethod(): String = null
 
-//  val results = Some(null) // WRONG
+  //  val results = Some(null) // WRONG
 
   // this will build Some or None
   val results: Option[String] = Option(unsafeMethod())
@@ -25,11 +26,13 @@ object L7Options extends App {
 
   // chained methods
   def backupMethod(): String = "A valid value"
+
   val chainedResult = Option(unsafeMethod()).orElse(Option(backupMethod()))
 
   // DESIGN unsafe APIs
   // this will return None object
   def betterUnsafeMethod(): Option[String] = None
+
   def betterBackupMethod(): Option[String] = Some("A valid result")
 
   // better chained result
@@ -39,7 +42,7 @@ object L7Options extends App {
   // functions on Options
   println(myFirstOption.isEmpty)
   println(myFirstOption.get)
-//  println(noValue.get) // VERY DANGEROUS ON Option - DO NOT USE, Instead:
+  //  println(noValue.get) // VERY DANGEROUS ON Option - DO NOT USE, Instead:
   println(noValue.getOrElse(-1))
 
   // map, flatMap, filter
@@ -69,7 +72,7 @@ object L7Options extends App {
     "host" -> "176.45.36.1",
     "port" -> "80")
 
-  val host = config.get("host")
+  val host = config.get("host") // get method on Map returns an Option
   val port = config.get("port")
 
   val connection = host.flatMap(h => port.flatMap(p => Connection(h, p)))

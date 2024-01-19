@@ -1,7 +1,26 @@
 package FPInScalaBook
 
+import scala.annotation.tailrec
+
 object P1C3FunctionalDataType extends App {
 
+  sealed trait LinkedList[+A]
 
+  case object Empty extends LinkedList[Nothing]
 
+  case class Cons[+A](h: A, t: LinkedList[A]) extends LinkedList[A] {
+
+    def sumRecursive(ints: LinkedList[Int]): Int = ints match
+      case Empty => 0
+      case Cons(h, t) => h + sumRecursive(t) // recursive not tail recursive
+
+    def sum(ints: LinkedList[Int]): Int = {
+      @tailrec
+      def loop(ints: LinkedList[Int], acc: Int): Int = ints match
+        case Empty => acc
+        case Cons(h, t) => loop(t, acc + h)
+
+      loop(ints, 0)
+    }
+  }
 }

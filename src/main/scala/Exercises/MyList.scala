@@ -46,7 +46,7 @@ case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
   def add[B >: A](element: B): MyList[B] = new Cons(element, this)
   def printElements: String =
     if (t.isEmpty) "" + h
-    else s"${h} ${t.printElements}"
+    else s"$h ${t.printElements}"
 
   def map[B](f: A => B): MyList[B] =
     new Cons(f(h), t.map(f))
@@ -112,6 +112,9 @@ object ListTest extends App {
   val listOfIntegers: MyList[Int] = Cons(1,2,3,4)
   val listOfIntegers1: MyList[Int] = Cons(5,6,7,8)
   val listOfStrings: MyList[String] = Cons("Hi","Hello","World","Now")
+  val listOfAny: MyList[Any] = Cons("Hi", 2, false)
+
+  println(listOfAny.printElements)
 
   // hof - foreach
   listOfIntegers.foreach((x: Int) => println(x))

@@ -67,14 +67,16 @@ object L8HandlingFailures extends App {
   // if you get the html page from the connection
   // print it to the console
   // call renderHTML
-//  val tryConnection = HttpService.getSafeConnection(hostname, port)
-//  val tryHTML = tryConnection.flatMap(x => x.getSafe("url"))
-//  tryHTML.foreach(renderHTML)
+  //  val tryConnection = HttpService.getSafeConnection(hostname, port)
+  //  val tryHTML = tryConnection.flatMap(x => x.getSafe("url"))
+  //  tryHTML.foreach(renderHTML)
 
-  val chainedConnection =
-    Try(HttpService.getConnection(hostname, port)).flatMap(x => Try(x.get("url")))
-  chainedConnection.foreach(renderHTML)
+  // chained calls
+  Try(HttpService.getConnection(hostname, port))
+    .flatMap(x => Try(x.get("url")))
+    .foreach(renderHTML)
 
+  // using for-comprehension
   for {
     connection <- Try(HttpService.getConnection(hostname, port))
     html <- Try(connection.get("url"))

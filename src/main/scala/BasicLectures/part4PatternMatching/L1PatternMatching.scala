@@ -37,7 +37,7 @@ object L1PatternMatching extends App {
   case class Dog(breed: String) extends Animal
   case class Parrot(greeting: String) extends Animal
 
-  val animal: Animal = new Dog("Terra Nova")
+  val animal: Animal = Dog("Terra Nova")
   animal match {
     case Dog(someBreed) => println(s"A dog of ${someBreed}")
     case _              => println("something else")
@@ -69,12 +69,12 @@ object L1PatternMatching extends App {
           }
         }
 
-        maybeParenthesis(e1) + " * " + converted(e2)
+        maybeParenthesis(e1) + " * " + maybeParenthesis(e2)
     }
   }
 
   println(converted(Sum(Number(2), Number(3))))
   println(converted(Product(Sum(Number(2), Number(3)), Number(4))))
-  println(converted(Product(Number(4), Sum(Number(2), Number(3))))) // todo
+  println(converted(Product(Number(4), Sum(Number(2), Number(3)))))
 
 }

@@ -53,9 +53,16 @@ object L1DarkSugar extends App {
   // Syntax Sugar 1. Methods with single parameter
   def singleArgs(args: Int): String = s"$args little ducks"
 
+  val cumbersome = singleArgs({
+    // using parenthesis and curly braces as a code block
+    println("parenthesis block")
+    4
+  })
+  // we can omit the parenthesis
   // passing the argument from return value of code block
   val desc = singleArgs {
     // write some complex code
+    println("syntax block")
     3
   }
   println(desc)

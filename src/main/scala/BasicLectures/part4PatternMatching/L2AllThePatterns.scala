@@ -44,14 +44,14 @@ object L2AllThePatterns extends App {
 //    case Cons(head, Cons(subhead, subtail)) =>
 //  }
 //
-//  // 5. List Patterns:
-//  val aStandardList = List(1, 2, 3, 42)
-//  val standardListMatching = aStandardList match {
-//    case List(1, _, _, _)    => // extractor = advanced
-//    case List(1, _*)         => // list of arbitrary length - advanced
-//    case 1 :: List(_)        => // infix pattern
-//    case List(1, 2, 3) :+ 42 => // another infix pattern
-//  }
+  // 5. List Patterns:
+  val aStandardList = List(1, 2, 3, 42)
+  val standardListMatching = aStandardList match {
+    case List(1, _, _, _)    => // extractor = advanced
+    case List(1, _*)         => // list of arbitrary length - advanced
+    case 1 :: List(_)        => // infix pattern
+    case List(1, 2, 3) :+ 42 => // another infix pattern
+  }
 //
 //  // 6. Type specifiers:
 //  val unknown: Any = 2

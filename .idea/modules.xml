@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/abhishekroy.chowdhary.functional-programming-scala.iml" filepath="$PROJECT_DIR$/.idea/modules/abhishekroy.chowdhary.functional-programming-scala.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/functional-programming-scala.iml" filepath="$PROJECT_DIR$/.idea/modules/functional-programming-scala.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/functional-programming-scala-build.iml" filepath="$PROJECT_DIR$/.idea/modules/functional-programming-scala-build.iml" />
     </modules>

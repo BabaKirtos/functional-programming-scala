@@ -6,8 +6,53 @@ import scala.util.Try
 
 object L1DarkSugar extends App {
 
+  // test inheritance
+  class Animal {
+    def anAnimal = println("Coming from Animal!")
+
+    def makeSound(): Unit = println("Animal makes a sound")
+  }
+
+  class Dog extends Animal {
+    def aDog = println("Coming from Dog!")
+
+    override def makeSound(): Unit = println("Dog barks")
+  }
+
+  class Cat extends Animal {
+    def aCat = println("Coming from a Cat!")
+
+    override def makeSound(): Unit = println("Cat meows")
+  }
+
+  val animalDog: Animal = new Dog
+  val onlyDog: Dog = new Dog
+
+  // animalDog is of type Animal and does not have access to
+  // functions in Dog class even though it is instantiated as
+  // a new Dog
+  // onlyDog on the other hand has access to functions of both
+  // the classes Animal and Dog
+  animalDog.anAnimal // Works
+  //  animalDog.aDog // This does not work
+  onlyDog.anAnimal // Works
+  onlyDog.aDog // Works
+
+  // Abstraction
+  def makeAnimalSound(animal: Animal): Unit = {
+    animal.makeSound()
+  }
+
+  // Polymorphic behavior
+  val animals: Array[Animal] = Array(new Animal, new Dog, new Cat)
+
+  for (animal <- animals) {
+    makeAnimalSound(animal)
+  }
+
   // Syntax Sugar 1. Methods with single parameter
   def singleArgs(args: Int): String = s"$args little ducks"
+
   // passing the argument from return value of code block
   val desc = singleArgs {
     // write some complex code
@@ -28,6 +73,7 @@ object L1DarkSugar extends App {
   trait Action {
     def act(n: Int): Int
   }
+
   val anInstance = new Action {
     override def act(n: Int): Int = n + 1
   }
@@ -42,8 +88,10 @@ object L1DarkSugar extends App {
 
   abstract class AnAbstractType {
     def implemented: Int = 23
+
     def f(a: Int): Unit
   }
+
   val anAbstractInstance: AnAbstractType = (a: Int) => println(s"$a is a number")
   anAbstractInstance.f(2)
 
@@ -62,17 +110,20 @@ object L1DarkSugar extends App {
     @targetName("-->:")
     def -->:(value: T): MyStream[T] = this
   }
+
   val myStream = 1 -->: 2 -->: 3 -->: new MyStream[Int]
 
   // Syntax Sugar 4. Multi word method naming
   class TeamGirl(name: String) {
     def `and then said`(gossip: String): Unit = println(s"$name said $gossip")
   }
+
   val lilly = new TeamGirl("Lilly")
   lilly `and then said` "Scala is sweet"
 
   // Syntax Sugar 5. Generics.: Infix types
   class Composite[A, B]
+
   // simple way
   val simpleComposite: Composite[Int, String] = new Composite[Int, String]
   // fancy way with Infix types
@@ -80,7 +131,8 @@ object L1DarkSugar extends App {
 
   @targetName("-->")
   class -->[A, B]
-  val towards: Int --> String = new -->[Int, String]
+
+  val towards: Int --> String = new-->[Int, String]
 
   // Syntax Sugar 6. update() method, special like apply()
   val anArray = Array(1, 2, 3)
@@ -91,10 +143,13 @@ object L1DarkSugar extends App {
   // Syntax sugar 7. Setters for mutable collections
   class Mutable {
     private var internalMember: Int = 0 // private for OOP encapsulation
+
     def member: Int = internalMember // "getter"
+
     def member_=(value: Int): Unit =
       internalMember = value // "setter"
   }
+
   val aMutableContainer = new Mutable
   aMutableContainer.member = 42 // rewritten as aMutableContainer.member_=(42)
 

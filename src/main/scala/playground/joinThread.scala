@@ -24,7 +24,7 @@ object joinThread extends App {
   thread2.start()
 
   // Without join, daemon threads will not complete their execution
-  // Refer to the following link -> https://medium.com/@lakkuga/daemon-and-non-daemon-threads-in-ddc091fabacd#:~:text=Non%2Ddaemon%20threads%20are%20user,non%2Ddaemon%2Fuser%20thread.
+  // Refer to the following link -> https://medium.com/@lakkuga/daemon-and-non-daemon-threads-in-ddc091fabacd
   thread1.join()
   thread2.join()
 

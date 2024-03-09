@@ -58,6 +58,7 @@ object L1DarkSugar extends App {
     println("parenthesis block")
     4
   })
+  println(cumbersome)
   // we can omit the parenthesis
   // passing the argument from return value of code block
   val desc = singleArgs {
@@ -67,10 +68,11 @@ object L1DarkSugar extends App {
   }
   println(desc)
   // same can be done with Try object
-  val aTryInstance = Try { // java's try {...}
+  val aTryInstance = Try { // not java's try {...}
     throw new RuntimeException()
   }
   println(aTryInstance)
+  // and with hofs
   val aList = List(1, 2, 3).map { x =>
     x + 1
   }
@@ -84,14 +86,56 @@ object L1DarkSugar extends App {
   val anInstance = new Action {
     override def act(n: Int): Int = n + 1
   }
-  val aFun4kyInstance: Action = (x: Int) => x + 1 // magic
+  val aFunkyInstance: Action = (x: Int) => x + 1 // magic
+  // The below will not work even though aFunkyInstance looks
+  // like Function1 lambda
+  // aFunkyInstance(2)
 
   // example: Runnable
   val aThread = new Thread(new Runnable {
-    override def run(): Unit = println("hello")
+    override def run(): Unit = {
+      Thread.sleep(1000)
+      println("Hi Scala, from a new thread!!")
+    }
   })
   // similarly, lambda can implement runnable
-  val aNewThread = new Thread(() => println("lambda scala"))
+  val aNewThread = new Thread(() => {
+    Thread.sleep(1000)
+    println("I'm from a different thread!!")
+  })
+
+  // Join the threads to the thread running main
+  // Not actually required as these are non-daemon threads
+  // Read more about this in the below link:
+  // https://medium.com/@lakkuga/daemon-and-non-daemon-threads-in-ddc091fabacd
+  // Making the threads daemon
+  //  aThread.setDaemon(true)
+  //  aNewThread.setDaemon(true)
+  // Start the threads
+  aThread.start()
+  aNewThread.start()
+  // Now we need to join the threads or else the JVM will stop as soon as main is done
+  //  aThread.join()
+  //  aNewThread.join()
+  /*
+  There seems to be more caveats related to threads.
+  - If the thread is a daemon thread, and if we join them, then the main waits for these
+  threads to finish its execution before resuming it own execution and you can see
+  the output messages delayed by a second.
+  - If the threads are non-daemon threads, which all user defined threads are by default,
+  then their execution is done in parallel to the main thread.
+  Also, start() and run() seem to behave differently, we can research that later.
+  TODO - What is the difference between start() and run() on threads:
+  - thread.start(): This method is used to begin the execution of a thread
+  by calling the run() method asynchronously. When you call start(), the thread's run()
+  method is executed in a separate thread of control. This means that the code inside
+  the run() method will run concurrently with the main thread or any other threads that are executing.
+  - thread.run(): This method is simply a normal method call. It does not start a new thread;
+  instead, it executes the run() method in the current thread of control.
+  So, calling run() directly will execute the code sequentially in the same
+  thread from which it was called. This defeats the purpose of multithreading because
+  it doesn't create a new execution context.
+   */
 
   abstract class AnAbstractType {
     def implemented: Int = 23

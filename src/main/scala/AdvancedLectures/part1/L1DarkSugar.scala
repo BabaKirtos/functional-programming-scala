@@ -87,16 +87,13 @@ object L1DarkSugar extends App {
     override def act(n: Int): Int = n + 1
   }
   val aFunkyInstance: Action = (x: Int) => x + 1 // magic
-  // The below will not work even though aFunkyInstance looks
-  // like Function1 lambda
+  // The below will not work even though aFunkyInstance looks like Function1 lambda
   // aFunkyInstance(2)
 
   // example: Runnable
-  val aThread = new Thread(new Runnable {
-    override def run(): Unit = {
-      Thread.sleep(1000)
-      println("Hi Scala, from a new thread!!")
-    }
+  val aThread = new Thread(() => {
+    Thread.sleep(1000)
+    println("Hi Scala, from a new thread!!")
   })
   // similarly, lambda can implement runnable
   val aNewThread = new Thread(() => {
@@ -104,9 +101,7 @@ object L1DarkSugar extends App {
     println("I'm from a different thread!!")
   })
 
-  // Join the threads to the thread running main
-  // Not actually required as these are non-daemon threads
-  // Read more about this in the below link:
+  // Read more about threads in the below link:
   // https://medium.com/@lakkuga/daemon-and-non-daemon-threads-in-ddc091fabacd
   // Making the threads daemon
   //  aThread.setDaemon(true)
@@ -114,7 +109,8 @@ object L1DarkSugar extends App {
   // Start the threads
   aThread.start()
   aNewThread.start()
-  // Now we need to join the threads or else the JVM will stop as soon as main is done
+  // Now we need to join the threads or else the JVM will stop as soon as
+  // the main thread is done
   //  aThread.join()
   //  aNewThread.join()
   /*

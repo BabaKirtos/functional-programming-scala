@@ -6,50 +6,6 @@ import scala.util.Try
 
 object L1DarkSugar extends App {
 
-  // test inheritance
-  class Animal {
-    def anAnimal = println("Coming from Animal!")
-
-    def makeSound(): Unit = println("Animal makes a sound")
-  }
-
-  class Dog extends Animal {
-    def aDog = println("Coming from Dog!")
-
-    override def makeSound(): Unit = println("Dog barks")
-  }
-
-  class Cat extends Animal {
-    def aCat = println("Coming from a Cat!")
-
-    override def makeSound(): Unit = println("Cat meows")
-  }
-
-  val animalDog: Animal = new Dog
-  val onlyDog: Dog = new Dog
-
-  // animalDog is of type Animal and does not have access to
-  // functions in Dog class even though it is instantiated as
-  // a new Dog
-  // onlyDog on the other hand has access to functions of both
-  // the classes Animal and Dog
-  animalDog.anAnimal // Works
-  //  animalDog.aDog // This does not work
-  onlyDog.anAnimal // Works
-  onlyDog.aDog // Works
-
-  // Abstraction
-  def makeAnimalSound(animal: Animal): Unit = {
-    animal.makeSound()
-  }
-
-  // Polymorphic behavior
-  val animals: Array[Animal] = Array(new Animal, new Dog, new Cat)
-
-  for (animal <- animals) {
-    makeAnimalSound(animal)
-  }
-
   // Syntax Sugar 1. Methods with single parameter
   def singleArgs(args: Int): String = s"$args little ducks"
 

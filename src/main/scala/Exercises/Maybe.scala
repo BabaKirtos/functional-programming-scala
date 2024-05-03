@@ -7,7 +7,6 @@ abstract class Maybe[+A] {
   def map[B](f: A => B): Maybe[B]
   def flatMap[B](f: A => Maybe[B]): Maybe[B]
   def filter(f: A => Boolean): Maybe[A]
-
 }
 
 case object MaybeNot extends Maybe[Nothing] {
@@ -15,7 +14,6 @@ case object MaybeNot extends Maybe[Nothing] {
   def map[B](f: Nothing => B): Maybe[Nothing] = MaybeNot
   def flatMap[B](f: Nothing => Maybe[B]): Maybe[Nothing] = MaybeNot
   def filter(p: Nothing => Boolean): Maybe[Nothing] = MaybeNot
-
 }
 
 case class Just[+A](value: A) extends Maybe[A] {
@@ -25,7 +23,6 @@ case class Just[+A](value: A) extends Maybe[A] {
   def filter(f: A => Boolean): Maybe[A] =
     if (f(value)) this
     else MaybeNot
-
 }
 
 object TestMaybe extends App {
@@ -35,5 +32,4 @@ object TestMaybe extends App {
   println(maybeList.map(_.flatMap((x: Int) => new Just[Boolean](x % 2 == 0))))
   println(maybeList.map(_.filter(_ % 2 == 0)))
   println(maybeList.filter(_ != MaybeNot))
-
 }

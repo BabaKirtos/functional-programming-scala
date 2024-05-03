@@ -1,6 +1,5 @@
 package AdvancedLectures.part1
 
-import java.awt.Composite
 import scala.annotation.targetName
 import scala.util.Try
 
@@ -17,19 +16,20 @@ object L1DarkSugar extends App {
   println(cumbersome)
   // we can omit the parenthesis
   // passing the argument from return value of code block
-  val desc = singleArgs {
+  val simple = singleArgs {
     // write some complex code
     println("syntax block")
     3
   }
-  println(desc)
-  // same can be done with Try object
+  println(simple)
+  // same can be done with Try or Future object
   val aTryInstance = Try { // not java's try {...}
     throw new RuntimeException()
   }
   println(aTryInstance)
-  // and with hofs
+  // and with HoFs
   val aList = List(1, 2, 3).map { x =>
+    println(x)
     x + 1
   }
   println(aList)
@@ -39,12 +39,24 @@ object L1DarkSugar extends App {
     def act(n: Int): Int
   }
 
+  // Initializing Action
   val anInstance = new Action {
     override def act(n: Int): Int = n + 1
   }
-  val aFunkyInstance: Action = (x: Int) => x + 1 // magic
-  // The below will not work even though aFunkyInstance looks like Function1 lambda
-  // aFunkyInstance(2)
+  // lambda also works in initializing Action
+  // as Action has only one method
+  val aFunkyInstance: Action = (x: Int) => x + 1
+  aFunkyInstance.act(3)
+
+  // Same is applicable for an Abstract class
+  abstract class AnAbstractType {
+    def implemented: Int = 23
+
+    def f(a: Int): Unit
+  }
+
+  val anAbstractInstance: AnAbstractType = (a: Int) => println(s"$a is a number")
+  anAbstractInstance.f(2)
 
   // example: Runnable
   val aThread = new Thread(() => {
@@ -88,15 +100,6 @@ object L1DarkSugar extends App {
   thread from which it was called. This defeats the purpose of multithreading because
   it doesn't create a new execution context.
    */
-
-  abstract class AnAbstractType {
-    def implemented: Int = 23
-
-    def f(a: Int): Unit
-  }
-
-  val anAbstractInstance: AnAbstractType = (a: Int) => println(s"$a is a number")
-  anAbstractInstance.f(2)
 
   // Syntax Sugar 3. :: and #:: methods are special
   val prependedList = 2 :: List(3, 4)

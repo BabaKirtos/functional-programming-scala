@@ -18,3 +18,4 @@ metals.sbt
 *.iws
 .shelf/
 ci/scala-amm/node_modules/
+/project/

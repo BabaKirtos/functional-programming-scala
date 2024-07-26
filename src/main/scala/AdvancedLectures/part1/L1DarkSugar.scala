@@ -45,6 +45,7 @@ object L1DarkSugar extends App {
   }
   // lambda also works in initializing Action
   // as Action has only one method
+  // We need to provide the return type
   val aFunkyInstance: Action = (x: Int) => x + 1
   aFunkyInstance.act(3)
 

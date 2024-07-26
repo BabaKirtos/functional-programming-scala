@@ -4,6 +4,7 @@ import BasicLectures.part2OOP.Counter
 
 import javax.xml.transform.Result
 import scala.annotation.tailrec
+import scala.collection.mutable
 import scala.language.postfixOps
 
 object playground {
@@ -273,5 +274,55 @@ object playground {
 
     println(concatenateN(3, "Hi"))
 
+    val a = List(1,2,3,4)
+
+    val add = (x: Int, y: Int) => x + y
+
+    val multi = (y: Int) => y * 2
+
+    val b = List(add, multi)
+
+//    val result = a.map(add(_))
+
+//    println(result)
+
+    // implement calculate, it takes a function as a argument, also int as a argument and prints after applying
+    def calculate(f: (Int, Int) => Int)(y: Int)(z: Int): Unit =
+      println(f(y, z))
+
+    val add2 = calculate(add)(2)
+
+    add2(7)
+
+    // implement a queue using a stack ds, use pop push, enqueue - insert(push), dequeue - removes (pop) - this should be a fifo lifo
+    case class MyQueue(a: mutable.Stack[Int]) {
+
+      def enqueue(x: Int) = a.push(x) // appends at the end
+
+      def dequeue: Int = {
+
+        val temp: mutable.Stack[Int] = mutable.Stack()
+
+        val count = a.length
+
+        def transfer(x: mutable.Stack[Int], acc: mutable.Stack[Int] = mutable.Stack(), counter: Int = 0): mutable.Stack[Int] =
+          if (temp.size == counter) acc
+          else transfer(x, acc.push(temp.pop()), counter + 1)
+
+        def helper(a: mutable.Stack[Int], counter: Int = 0): Int = {
+          if (counter == count) {
+            transfer(temp)
+            a.pop()
+          }
+          else {
+            val b = a.pop()
+            temp.push(b)
+            helper(a, counter + 1)
+          }
+        }
+
+        helper(a)
+      }  // returns the last element of MyQueue
+    }
   }
 }

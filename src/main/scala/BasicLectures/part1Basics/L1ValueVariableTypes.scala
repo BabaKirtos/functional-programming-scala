@@ -8,8 +8,11 @@ object L1ValueVariableTypes extends App {
   val multiplyNew: (Int, Int) => Int = (x, y) => x * y
   val operations: List[(Int, Int) => Int] = List(addNew, multiplyNew)
   val inputList = List((1, 2), (3, 4), (5, 6), (7, 8))
-  val ouputMapList = inputList.map { case (a, b) => operations.map(_(a, b)) }
-  val ouputFlatMapList = inputList.flatMap { case (a, b) => operations.map(_(a, b)) }
+  val partialFunction: PartialFunction[(Int, Int), List[Int]] = {
+    case (a, b) => operations.map(_(a, b))
+  }
+  val ouputMapList = inputList.map { partialFunction }
+  val ouputFlatMapList = inputList.flatMap { partialFunction }
   println(operations) // You get a List with 2 elements which are pointers to a function (addNew, multiplyNew)
   println(ouputMapList) // Each element of inputList will return a List
   println(ouputFlatMapList) // We flatten the inner elements to get one outer List

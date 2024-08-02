@@ -17,6 +17,7 @@ object playground {
       if (i < 10)
         loop(i + 1)
     }
+
     loop()
 
     val aList: List[Int] = List(1, 2, 3, 4)
@@ -33,8 +34,10 @@ object playground {
         else if (i2 == nums.length - 1) helper(nums, i1 + 1, i1 + 2, t, 1)
         else helper(nums, i1, i1 + inc, t, inc + 1)
       }
+
       helper(nums, 0, 1, target, 1)
     }
+
     println(twoSum(nums, target).mkString("Array(", ", ", ")"))
 
     // LeetCode question 2: Palindrome number
@@ -43,10 +46,12 @@ object playground {
         if (y < 1) num
         else reverse(y / 10, (y % 10) + (num * 10))
       }
+
       if (x < 0) false
       else if (reverse(x) == x) true
       else false
     }
+
     println(isPalindrome(121))
 
     // LeetCode question 3: Longest common prefix
@@ -61,10 +66,10 @@ object playground {
       val minimumLetters = minLetters(strs, acc = strs(0).length)
 
       def compare(
-          strs: Array[String],
-          outer: Int = 0,
-          inner: Int,
-          result: Boolean = false): Boolean = {
+                   strs: Array[String],
+                   outer: Int = 0,
+                   inner: Int,
+                   result: Boolean = false): Boolean = {
         if (outer == strs.length - 1) result
         else if (strs(outer)(inner) != strs(outer + 1)(inner)) false
         else compare(strs, outer + 1, inner, strs(outer)(inner) == strs(outer + 1)(inner))
@@ -151,19 +156,19 @@ object playground {
     // 1 5 10 10 5 1
     // 1 6 15 20 15 6 1
 
-//    def pascal(row: Int, column: Int): Int = {
-//      def pascalElement(r: Int, c: Int, e: Int = 1): Int =
-//        if (column == 0 || column == row) 1
-//        else pascalElement(row - 1, column - 1) + pascalElement(row - 1, column)
-//
-//      pascalElement(row, column)
-//    }
-//
-//    for (row <- 0 to 10) {
-//      for (col <- 0 to row)
-//        print(s"${pascal(col, row)} ")
-//      println()
-//    }
+    //    def pascal(row: Int, column: Int): Int = {
+    //      def pascalElement(r: Int, c: Int, e: Int = 1): Int =
+    //        if (column == 0 || column == row) 1
+    //        else pascalElement(row - 1, column - 1) + pascalElement(row - 1, column)
+    //
+    //      pascalElement(row, column)
+    //    }
+    //
+    //    for (row <- 0 to 10) {
+    //      for (col <- 0 to row)
+    //        print(s"${pascal(col, row)} ")
+    //      println()
+    //    }
 
     def moveZeroes(nums: Array[Int]): Unit = {
       def HelperZ(nums: Array[Int], i: Int, k: Int): Unit = {
@@ -216,7 +221,7 @@ object playground {
     println(newMap)
     println(a1 == a2)
 
-    val listOfTuple: List[(Int, String)] = List((1,"Hi"),(2,"My"),(3,"Name"),(4,"is"),(5,"SlimShady"))
+    val listOfTuple: List[(Int, String)] = List((1, "Hi"), (2, "My"), (3, "Name"), (4, "is"), (5, "SlimShady"))
     val (intList, stringList) = listOfTuple.unzip
     val reducedIntList = intList.reduce((s1, s2) => s1 + s2)
     println(stringList)
@@ -270,11 +275,11 @@ object playground {
 
     def concatenateN(n: Int, s: String): String =
       if (n <= 0) "!!"
-      else s + concatenateN(n-1, s)
+      else s + concatenateN(n - 1, s)
 
     println(concatenateN(3, "Hi"))
 
-    val a = List(1,2,3,4)
+    val a = List(1, 2, 3, 4)
 
     val add = (x: Int, y: Int) => x + y
 
@@ -282,9 +287,9 @@ object playground {
 
     val b = List(add, multi)
 
-//    val result = a.map(add(_))
+    //    val result = a.map(add(_))
 
-//    println(result)
+    //    println(result)
 
     // implement calculate, it takes a function as a argument, also int as a argument and prints after applying
     def calculate(f: (Int, Int) => Int)(y: Int)(z: Int): Unit =
@@ -305,10 +310,12 @@ object playground {
 
         val count = a.length
 
+        @tailrec
         def transfer(x: mutable.Stack[Int], acc: mutable.Stack[Int] = mutable.Stack(), counter: Int = 0): mutable.Stack[Int] =
           if (temp.size == counter) acc
           else transfer(x, acc.push(temp.pop()), counter + 1)
 
+        @tailrec
         def helper(a: mutable.Stack[Int], counter: Int = 0): Int = {
           if (counter == count) {
             transfer(temp)
@@ -322,7 +329,52 @@ object playground {
         }
 
         helper(a)
-      }  // returns the last element of MyQueue
+      } // returns the last element of MyQueue
     }
+
+    // given a List of strings use tail recursion to search for a String
+
+    val input = List("Apple", "Mango", "Grapes")
+
+    def stringFinder(in: List[String], target: String): Boolean = {
+      @tailrec
+      def helper(str: List[String], acc: Boolean = false): Boolean = {
+        if (str.tail == Nil || acc) acc
+        else helper(str.tail, str.head == target)
+      }
+
+      helper(in)
+    }
+
+    println(stringFinder(input, "Mango"))
+
+    // Q. Write a program to count the frequency of each element in a list.
+    // nums = [1, 2, 3, 2, 1, 3, 2, 4, 5, 4]
+    // List((1, 2), (2, 3) .. )
+
+    def frequency(in: List[Int]): List[(Int, Int)] = {
+      @tailrec
+      def counter(input: List[Int], target: Int, acc: Int = 0): Int = {
+        if (input.tail == Nil) acc
+        else counter(input.tail, target, if (input.head == target) acc + 1 else acc)
+      }
+
+      @tailrec
+      def helper(inList: List[Int], acc: List[(Int, Int)] = List.empty): List[(Int, Int)] = {
+        if (inList.tail == Nil) acc
+        else if (acc.map(_._1).contains(inList.head)) helper(inList.tail, acc)
+        else helper(inList.tail, acc ++ List((inList.head, counter(inList, inList.head))))
+      }
+
+      helper(in)
+    }
+
+    val inNums = List(1, 2, 3, 2, 1, 3, 2, 4, 5, 4)
+
+    def frequency1(in: List[Int]): List[(Int, Int)] = {
+      in.groupBy(identity).map { case (k, v) => (k, v.size) }.toList
+    }
+
+    println(frequency(inNums))
   }
 }

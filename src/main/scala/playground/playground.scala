@@ -332,6 +332,34 @@ object playground {
       } // returns the last element of MyQueue
     }
 
+    // table 1 - 10 records, table 2 - 50 records, table 1 left join on table 2
+
+    // Employee
+    //EID	MID
+    //1	2
+    //2	5
+    //3	2
+    //4	5
+    //5	NULL
+    //select a.*,b.* from employee as a left join employee as b on a.mid=b.eid
+
+    // EID	MID EID MID
+    // 1	2 2 5
+    // 2	5 5 NULL
+    // 3	2 2 5
+    // 4	5 5 NULL
+    // 5	NULL NULL NULL
+
+    // Table1
+    //Policy Number	Coverage No.	Premium
+    //P1	C1	100
+    //P1	C2	100
+    //P2	C1	100
+
+    // Policy Number	No. of Coverages	C1	C2	Total Premium
+    //P1	2	1	1	200
+    //P2	1	1	0	100
+
     // given a List of strings use tail recursion to search for a String
 
     val input = List("Apple", "Mango", "Grapes")
@@ -348,9 +376,17 @@ object playground {
 
     println(stringFinder(input, "Mango"))
 
+    // Array[0,0,1,0,1,1,2,2,1,1,2,0,0] -> only 3 elements 0,1,2. Sort it with low time and space complexity.
+
+    // List(1,2,0) List(3,6,7,8) -> List(1,3,2,6,0,7,8)
+
     // Q. Write a program to count the frequency of each element in a list.
     // nums = [1, 2, 3, 2, 1, 3, 2, 4, 5, 4]
     // List((1, 2), (2, 3) .. )
+
+    def frequency1(in: List[Int]): List[(Int, Int)] = {
+      in.groupBy(identity).map { case (k, v) => (k, v.size) }.toList
+    }
 
     def frequency(in: List[Int]): List[(Int, Int)] = {
       @tailrec
@@ -370,11 +406,32 @@ object playground {
     }
 
     val inNums = List(1, 2, 3, 2, 1, 3, 2, 4, 5, 4)
+    println(frequency(inNums))
 
-    def frequency1(in: List[Int]): List[(Int, Int)] = {
-      in.groupBy(identity).map { case (k, v) => (k, v.size) }.toList
+    // String -> palindrome or not
+    // val x = "abcddcba" -> true
+
+    def palindromeCheck(input: String): Boolean = {
+
+      def helper(in: String, counter: Int = 0, acc: Boolean = false): Boolean = {
+        if (counter == (in.size / 2)) acc
+        else helper(in, counter + 1, in(counter) == in((in.size - 1) - counter))
+      }
+
+      helper(input)
     }
 
-    println(frequency(inNums))
+    val x = "malayalam"
+    println(palindromeCheck(x))
+
+    // List of numbers, we want to find last element
+
+    def lastElement(in: List[Int]): Int = {
+      if (in.tail == Nil) in.head
+      else lastElement(in.tail)
+    }
+
+    val listNums = List(1, 2, 3, 4, 6, 7, 8)
+    println(lastElement(listNums))
   }
 }

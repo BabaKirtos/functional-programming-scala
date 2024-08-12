@@ -1,5 +1,7 @@
 package Exercises
 
+import scala.annotation.tailrec
+
 abstract class MyList[+A] { // like an empty template, telling its child what to do
   def head: A
   def tail: MyList[A]
@@ -87,6 +89,7 @@ case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
 
 object Cons {
   def apply[A](elems: A*): MyList[A] = {
+    @tailrec
     def creator(elems: Seq[A], counter: Int = 0, list: MyList[A] = Empty): MyList[A] = {
       if (counter == elems.length) list
       else creator(elems, counter + 1, list ++ new Cons[A](h = elems(counter), t = Empty))

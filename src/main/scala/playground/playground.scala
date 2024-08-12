@@ -376,6 +376,21 @@ object playground {
 
     println(stringFinder(input, "Mango"))
 
+    // List(2, 1, 2, 2, 2, 3, 7, 5, 4, 4) -> List(1, 2, 3, 4, 5, 7, 2, 4)
+
+    //    def sortedList(input: List[Int]): List[Int] = {
+    //
+    //      def sorter(in: List[Int], size: Int, value: Int, counter: Int = 0, acc: List[Int] = List.empty): List[Int] = {
+    //        if (in.tail == Nil && counter == size) acc
+    //        else if (value < in.head) sorter(in.tail, size, value, counter + 1, acc ++ List(value))
+    //        else sorter(in.tail, size, value, counter + 1, acc)
+    //      }
+    //
+    //      sorter(input, input.size, input.head)
+    //    }
+    //
+    //    println(sortedList(List(2, 1, 2, 2, 2, 3, 7, 5, 4, 4)))
+
     // Array[0,0,1,0,1,1,2,2,1,1,2,0,0] -> only 3 elements 0,1,2. Sort it with low time and space complexity.
 
     // List(1,2,0) List(3,6,7,8) -> List(1,3,2,6,0,7,8)

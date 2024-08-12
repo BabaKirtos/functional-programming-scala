@@ -1,6 +1,6 @@
 package playground
 
-object algo extends App {
+object GeneralAlgo extends App {
 
   import scala.concurrent.Future
   import scala.concurrent.ExecutionContext.Implicits.global

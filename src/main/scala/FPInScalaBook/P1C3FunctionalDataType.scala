@@ -18,7 +18,7 @@ object P1C3FunctionalDataType extends App {
       @tailrec
       def loop(ints: LinkedList[Int], acc: Int): Int = ints match
         case Empty => acc
-        case Cons(h, t) => loop(t, acc + h)
+        case Cons(h, t) => loop(t, acc + h) // tail recursive
 
       loop(ints, 0)
     }

@@ -66,10 +66,10 @@ object playground {
       val minimumLetters = minLetters(strs, acc = strs(0).length)
 
       def compare(
-                   strs: Array[String],
-                   outer: Int = 0,
-                   inner: Int,
-                   result: Boolean = false): Boolean = {
+        strs: Array[String],
+        outer: Int = 0,
+        inner: Int,
+        result: Boolean = false): Boolean = {
         if (outer == strs.length - 1) result
         else if (strs(outer)(inner) != strs(outer + 1)(inner)) false
         else compare(strs, outer + 1, inner, strs(outer)(inner) == strs(outer + 1)(inner))

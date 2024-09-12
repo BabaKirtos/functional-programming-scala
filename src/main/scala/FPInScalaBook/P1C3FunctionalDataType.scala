@@ -23,4 +23,8 @@ object P1C3FunctionalDataType extends App {
       loop(ints, 0)
     }
   }
+
+  val testList = new Cons[Int](2, new Cons[Int](5, new Cons[Int](8, Empty)))
+  println(testList.sum(testList))
 }
+

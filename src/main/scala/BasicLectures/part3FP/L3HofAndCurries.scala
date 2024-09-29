@@ -23,7 +23,7 @@ object L3HofAndCurries extends App {
   // for n = 2, (x: Int) => nTimes(f, 2 - 1)(f(f(f(x)))
   // for n = 1, (x: Int) => nTimes(f, 1 - 1)(f(f(f(f(x))))
   // for n = 0, (x: Int) => f(f(f(f(x)))
-  println(nTimes[String](_ + " TailRec ", 3)("A"))
+  println(nTimes[String](x => x + " TailRec " + x, 3)("A"))
 
   @tailrec
   def nTimesTailRec[A](f: A => A, n: Int, acc: A => A = identity[A]): A => A = {
@@ -32,7 +32,7 @@ object L3HofAndCurries extends App {
   }
 
   println(nTimesTailRec[Int](_ * 2, 4)(2))
-  println(nTimesTailRec[String](_ + " TailRec ", 3)("A"))
+  println(nTimesTailRec[String](x => x + " TailRec " + x, 3)("A"))
 
   @tailrec
   def nTimesValue(f: Int => Int, n: Int, x: Int): Int = {

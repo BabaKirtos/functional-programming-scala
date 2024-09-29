@@ -15,15 +15,15 @@ object L3Functions extends App {
   def aParameterLessFunction = {
     "no parameters"
   }
-  // scala 3 does not allow to call parameter less functions with
+  // scala 3 does not allow parameter less function calls
   // scala 2 does
   println(aParameterLessFunction)
 
   def aRepeatedFunction(aString: String, n: Int): String = {
     if (n == 1) // think about the end condition
-      aString
+      n + " " + aString
     else // think about iteration
-      aString + " " + aRepeatedFunction(aString, n - 1)
+      n + " " + aString + " " + aRepeatedFunction(aString, n - 1)
   }
   println(aRepeatedFunction("baba", 5))
   // When you need loops use recursion
@@ -40,6 +40,7 @@ object L3Functions extends App {
     def aSmallFunc(m: Int, n: Int): Int = {
       m + n
     }
+
     aSmallFunc(a, a - 1)
   }
   println(aBigFunc(10))
@@ -73,6 +74,7 @@ object L3Functions extends App {
       if (t <= 1) true
       else n % t != 0 && isPrimeUntil(t - 1)
     }
+
     isPrimeUntil(n / 2)
   }
   println(isPrime(13))

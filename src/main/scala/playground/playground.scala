@@ -1,7 +1,5 @@
 package playground
 
-import BasicLectures.part2OOP.Counter
-
 import javax.xml.transform.Result
 import scala.annotation.tailrec
 import scala.collection.mutable

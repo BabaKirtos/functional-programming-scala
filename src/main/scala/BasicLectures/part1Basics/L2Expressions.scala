@@ -23,7 +23,7 @@ object L2Expressions extends App {
     a + b
   }
 
-  val added = add(2, 3)
+  val added: Unit = add(2, 3)
 
   // operations with a variable
   var aVariable = 2
@@ -42,8 +42,10 @@ object L2Expressions extends App {
   // where we say if a condition is true do this
   // in scala we return a value
   // therefore we call it if expression
+  // All `if` expressions must have an `else` block
   println(if (aCondition) 5 else 3)
 
+  // NEVER WRITE LOOPS IN SCALA
   // loops are discouraged in scala
   // as they only execute side effects
   var a = 1
@@ -51,7 +53,6 @@ object L2Expressions extends App {
     println(a)
     a += 1
   }
-  // NEVER WRITE LOOPS IN SCALA
 
   // EVERYTHING in scala is an EXPRESSION, ie everything will return something
   val aWeirdValue = aVariable = 3 // Unit = void ****
@@ -59,7 +60,9 @@ object L2Expressions extends App {
   println(aWeirdValue)
 
   // side effects in scala are expression returning unit
-  println((aVariable = 6)) // reassignment of a var is also unit type
+  println({
+    aVariable = 6
+  }) // reassignment of a var is also unit type
   // the while loop will also return unit
   // side effects -> println(), whiles, reassignment of vars
   // these are all expressions returning unit

@@ -24,7 +24,7 @@ object P1C1CWhatIsFP extends App {
     // let's try to remove the above side effect
     def buyCoffeeNew(cc: CreditCard, p: Payments): Coffee = {
       val cup = new Coffee
-      // we still need a mock of Payments to test this
+      // we still need to mock Payments to test this
       // Also, what will happen if multiple coffees are ordered
       // For every charge we will have to pay a processing fee
       p.charge(cc, cup.price)

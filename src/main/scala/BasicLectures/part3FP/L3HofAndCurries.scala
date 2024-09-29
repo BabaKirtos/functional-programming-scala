@@ -12,24 +12,24 @@ object L3HofAndCurries extends App {
   // a function that applies a function n times over a value x
   // nTimes(f, n, x)
   // nTimes(f, 3, x) => f(f(f(x))) => if f(x) = 2 * x, n = 2 and x = 2 => 8 , this is a HOF
-
   def nTimes(f: Int => Int, n: Int): Int => Int = {
     if (n <= 0) (x: Int) => x
     else (x: Int) => nTimes(f, n - 1)(f(x))
   }
-  println(nTimes(_ * 2, 0)(2))
-  // for n = 4, (x: Int) => nTimes(f, 4 - 1)(f(2)) => 4
-  // for n = 3, (x: Int) => nTimes(f, 3 - 1)(f(4)) => 8
-  // for n = 2, (x: Int) => nTimes(f, 2 - 1)(f(8)) => 16
-  // for n = 1, (x: Int) => nTimes(f, 1 - 1)(f(16)) => 32
-  // for n = 0, (x: Int) => x
+
+  println(nTimes(_ * 2, 4)(2))
+  // for n = 4, (x: Int) => nTimes(f, 4 - 1)(f(x))
+  // for n = 3, (x: Int) => nTimes(f, 3 - 1)(f(f(x)))
+  // for n = 2, (x: Int) => nTimes(f, 2 - 1)(f(f(f(x)))
+  // for n = 1, (x: Int) => nTimes(f, 1 - 1)(f(f(f(f(x))))
+  // for n = 0, (x: Int) => f(f(f(f(x)))
 
   @tailrec
   def nTimesAns(f: Int => Int, n: Int, x: Int): Int = {
     if (n <= 0) x
     else nTimesAns(f, n - 1, f(x))
   }
-  println(nTimesAns(_ * 2, 4, 2))
+  println(nTimesAns(_ * 2, 5, 2))
 
   println(List(1,2,3).flatMap(List(_)))
 

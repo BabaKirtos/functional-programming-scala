@@ -12,8 +12,8 @@ object L6Generics extends App {
   println(newPerson.age + newPerson.name)
 
   class MyList[+A] {
-    // use the type A
-    // A is a generic type
+    // use the type parameter +A
+    // The +A is a generic covariant type
     // traits can also be generic
     def add[B >: A](element: B): MyList[B] = ???
   }

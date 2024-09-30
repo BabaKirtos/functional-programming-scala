@@ -12,18 +12,24 @@ object L3HofAndCurries extends App {
   // a function that applies a function n times over a value x
   // nTimes(f, n, x)
   // nTimes(f, 3, x) => f(f(f(x))) => if f(x) = 2 * x, n = 2 and x = 2 => 8 , this is a HOF
+  // this function applies f before recursion
   def nTimes[A](f: A => A, n: Int): A => A = {
     if (n <= 0) (x: A) => x
     else (x: A) => nTimes(f, n - 1)(f(x))
   }
 
   println(nTimes[Int](_ * 2, 4)(2))
-  // for n = 4, (x: Int) => nTimes(f, 4 - 1)(f(x))
-  // for n = 3, (x: Int) => nTimes(f, 3 - 1)(f(f(x)))
-  // for n = 2, (x: Int) => nTimes(f, 2 - 1)(f(f(f(x)))
-  // for n = 1, (x: Int) => nTimes(f, 1 - 1)(f(f(f(f(x))))
-  // for n = 0, (x: Int) => f(f(f(f(x)))
   println(nTimes[String](x => x + " TailRec " + x, 3)("A"))
+
+  // this function applies f after recursion
+  // https://chatgpt.com/share/66fa8b0c-be40-8013-b4ec-3863c099f3a8
+  def nTimesRec[A](f: A => A, n: Int): A => A = {
+    if (n <= 0) (x: A) => x
+    else (x: A) => f(nTimes(f, n-1)(x))
+  }
+
+  println(nTimesRec[Int](_ * 2, 4)(2))
+  println(nTimesRec[String](x => x + " TailRec " + x, 3)("A"))
 
   @tailrec
   def nTimesTailRec[A](f: A => A, n: Int, acc: A => A = identity[A]): A => A = {
@@ -40,7 +46,7 @@ object L3HofAndCurries extends App {
     else nTimesValue(f, n - 1, f(x))
   }
 
-  println(nTimesValue(_ * 2, 5, 2))
+  println(nTimesValue(_ * 2, 4, 2))
 
   println(List(1, 2, 3).flatMap(List(_)))
 

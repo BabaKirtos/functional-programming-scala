@@ -20,7 +20,7 @@ object L1WhatsFunction extends App {
   val newAction = new Action
   println(newAction.execute(element = 1))
 
-  // At most we can do type parameterization of a trait
+  // At most, we can do type parameterization of a trait
   // then instantiate the trait to a val with override def
   val doubler = new MyFunction[Int, Int] {
     override def apply(element: Int): Int = element * 2

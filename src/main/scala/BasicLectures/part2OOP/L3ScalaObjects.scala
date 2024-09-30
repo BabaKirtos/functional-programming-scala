@@ -5,8 +5,8 @@ import scala.language.postfixOps
 object L3ScalaObjects {
 
   // one of the fundamental aspect of OOP is called class level programming
-  // this means functionality that does not depend on a instance of a class
-  // Universal functions, classes and constants available through out the program
+  // this means functionality that does not depend on an instance of a class
+  // Universal functions, classes and constants available throughout the program
   // In java we use class for this
   // SCALA DOES NOT HAVE CLASS LEVEL FUNCTIONALITY ("static")
   // scala has objects, which is static like functionality
@@ -52,11 +52,11 @@ object L3ScalaObjects {
   // the entrance point :
   // def main (args: Array[String]): Unit = {code}
   // we need to write this if we do not include extends App
-  // App already has this method
+  // The App already has the main method in it
 
   // All vals initialized with that object point to the same instance
 
   // Combination of objects and classes with same names are called COMPANIONS
-  // COMPANIONS share each others private defs and vals?
+  // they share each others private def and vals?
 
 }

@@ -4,6 +4,7 @@ object test extends App {
 
   val person = new Person("John", 29)
   println(person.x)
+  println(person.age)
   person.greet("Baba")
   person.greet()
   val defaultPerson = new Person()

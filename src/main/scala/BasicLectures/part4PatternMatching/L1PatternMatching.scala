@@ -39,7 +39,7 @@ object L1PatternMatching extends App {
 
   val animal: Animal = Dog("Terra Nova")
   animal match {
-    case Dog(someBreed) => println(s"A dog of ${someBreed}")
+    case Dog(someBreed) => println(s"A dog of $someBreed")
     case _              => println("something else")
   }
 
@@ -49,8 +49,8 @@ object L1PatternMatching extends App {
   case class Sum(e1: Expr, e2: Expr) extends Expr
   case class Product(e1: Expr, e2: Expr) extends Expr
 
-  // write a simple function that use PM and takes an expression as a parameter
-  // and returns a human readable format
+  // write a simple function that use pattern matching and takes an expression as a parameter
+  // and returns a human-readable format
   // Sum(Number(2), Number(3)) => 2 + 3
   // Sum(Number(2), Number(3), Number(4)) => 2 + 3 + 4
   // Prod(Sum(Number(2), Number(3)), Number(4)) => (2 + 3) * 4 // with Parenthesis

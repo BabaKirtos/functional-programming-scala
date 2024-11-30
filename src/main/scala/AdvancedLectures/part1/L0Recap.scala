@@ -14,7 +14,7 @@ object L0Recap {
   // functions
   def addOne(x: Int): Int = x + 1
 
-  // Object Oriented Programming
+  // Object-Oriented Programming
   // test inheritance
   class Animal {
     def model: String = "Animal"
@@ -167,13 +167,3 @@ object L0Recap {
   def main(args: Array[String]): Unit = {
   }
 }
-
-
-
-
-
-
-
-
-
-

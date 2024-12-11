@@ -14,6 +14,7 @@ object L1DarkSugar extends App {
     4
   })
   println(cumbersome)
+
   // we can omit the parenthesis
   // passing the argument from return value of code block
   val simple = singleArgs {
@@ -22,11 +23,13 @@ object L1DarkSugar extends App {
     3
   }
   println(simple)
+
   // same can be done with Try or Future object
   val aTryInstance = Try { // not java's try {...}
     throw new RuntimeException()
   }
   println(aTryInstance)
+
   // and with HoFs
   val aList = List(1, 2, 3).map { x =>
     println(x)
@@ -43,6 +46,7 @@ object L1DarkSugar extends App {
   val anInstance = new Action {
     override def act(n: Int): Int = n + 1
   }
+
   // lambda also works in initializing Action
   // as Action has only one method
   // We need to provide the return type

@@ -1,6 +1,6 @@
 package AdvancedLectures.part1
 
-import scala.annotation.targetName
+import scala.annotation.{tailrec, targetName}
 import scala.util.Try
 
 object L1DarkSugar extends App {
@@ -46,14 +46,20 @@ object L1DarkSugar extends App {
   val anInstance = new Action {
     override def act(n: Int): Int = n + 1
   }
+  println(anInstance.act(9))
 
   // lambda also works in initializing Action
   // as Action has only one method
   // We need to provide the return type
   val aFunkyInstance: Action = (x: Int) => x + 1
-  aFunkyInstance.act(3)
+  println(aFunkyInstance.act(3))
 
-  // Same is applicable for an Abstract class
+  // we can define a method to apply act
+  def aFunkyMethod(x: Int): Int = aFunkyInstance.act(x)
+
+  println(aFunkyMethod(5))
+
+  // The same is applicable for an Abstract class
   abstract class AnAbstractType {
     def implemented: Int = 23
 
@@ -64,13 +70,14 @@ object L1DarkSugar extends App {
   anAbstractInstance.f(2)
 
   // example: Runnable
-  val aThread = new Thread(() => {
-    Thread.sleep(1000)
-    println("Hi Scala, from a new thread!!")
+  val aThread = new Thread(new Runnable {
+    override def run(): Unit = {
+      println("Hi Scala, from a new thread!!")
+    }
   })
+
   // similarly, lambda can implement runnable
   val aNewThread = new Thread(() => {
-    Thread.sleep(1000)
     println("I'm from a different thread!!")
   })
 
@@ -106,25 +113,46 @@ object L1DarkSugar extends App {
   it doesn't create a new execution context.
    */
 
-  // Syntax Sugar 3. :: and #:: methods are special
+  // Syntax Sugar 3.
+  // :: and #:: methods are special
   val prependedList = 2 :: List(3, 4)
-  // 2.::(List(3,4)), but there is no :: method in int class
+  // 2.::(List(3,4)), but there is no :: method in Int object
   // compiler rewrites the above as:
   // List(3,4).::(2)
   // Scala spec: last character of the operator determines its associativity
   // If it ends in a colon, it is right associative, if not then left
 
-  val newList = 1 :: 2 :: 3 :: List(4, 5) // equivalent to:
-  val similarList = List(4, 5).::(3).::(4).::(5)
+  val newList = 1 :: 2 :: 3 :: List(4, 5)
+  println(newList)
+  // equivalent to:
+  val similarList = List(4, 5).::(3).::(2).::(1)
+  println(similarList)
 
-  class MyStream[T] {
+  // Implementing our own custom symbol method `-->:`
+  class MyStream[T](val value: T, val next: Option[MyStream[T]] = None) {
     @targetName("-->:")
-    def -->:(value: T): MyStream[T] = this
+    def -->:(value: T): MyStream[T] = new MyStream(value, Some(this))
+
+    override def toString: String = {
+      @tailrec
+      def collectValues(stream: Option[MyStream[T]], acc: List[T] = Nil): List[T] = stream match {
+        case Some(s) if s.value != null => collectValues(s.next, s.value :: acc)
+        case _ => acc.reverse
+      }
+
+      collectValues(Some(this)).mkString("MyStream(", ", ", ")")
+    }
   }
 
-  val myStream = 1 -->: 2 -->: 3 -->: new MyStream[Int]
+  object MyStream {
+    def empty[T]: MyStream[T] = new MyStream[T](null.asInstanceOf[T])
+  }
 
-  // Syntax Sugar 4. Multi word method naming
+  // Usage
+  val myStream = 1 -->: 2 -->: 3 -->: MyStream.empty[Int]
+  println(myStream.toString)
+
+  // Syntax Sugar 4. Multi-word method naming
   class TeamGirl(name: String) {
     def `and then said`(gossip: String): Unit = println(s"$name said $gossip")
   }

@@ -15,8 +15,8 @@ object L1DarkSugar extends App {
   })
   println(cumbersome)
 
-  // we can omit the parenthesis
-  // passing the argument from return value of code block
+  // we can omit the parenthesis passing the argument
+  // from the return value of code block
   val simple = singleArgs {
     // write some complex code
     println("syntax block")
@@ -24,7 +24,7 @@ object L1DarkSugar extends App {
   }
   println(simple)
 
-  // same can be done with Try or Future object
+  // the same can be done with Try or Future object
   val aTryInstance = Try { // not java's try {...}
     throw new RuntimeException()
   }
@@ -54,7 +54,7 @@ object L1DarkSugar extends App {
   val aFunkyInstance: Action = (x: Int) => x + 1
   println(aFunkyInstance.act(3))
 
-  // we can define a method to apply act
+  // we can define a method to apply act method
   def aFunkyMethod(x: Int): Int = aFunkyInstance.act(x)
 
   println(aFunkyMethod(5))
@@ -176,7 +176,7 @@ object L1DarkSugar extends App {
   // Syntax Sugar 6. update() method, special like apply()
   val anArray = Array(1, 2, 3)
   anArray(2) = 7 // rewritten as anArray.update(index, value)
-  // update() is used in mutable collections
+  // update() is used in mutable collections,
   // remember to implement apply and update methods
 
   // Syntax sugar 7. Setters for mutable collections

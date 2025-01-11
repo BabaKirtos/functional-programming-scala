@@ -169,13 +169,43 @@ object L1DarkSugar extends App {
   val lilly = new Talker("Lilly")
   lilly `then said` "Scala is sweet"
 
+  // Good use cases are HTTP libraries
+  @targetName("Content-Type")
+  object `Content-Type` {
+    @targetName("application/json")
+    val `application/json` = "application/JSON"
+  }
+
+  println(`Content-Type`.`application/json`)
+
   // Syntax Sugar 5. Generics.: Infix types
-  class Composite[A, B]
+  @targetName("==>")
+  infix trait ==>[A, B] {
+    @targetName("+++")
+    infix def `+++`(something: String): String
+  }
+
+  @targetName("**>")
+  case class **>[A, B](memberA: A, memberB: B) extends ==>[A, B] {
+    @targetName("+++")
+    override def `+++`(something: String): String = s"From infix trait, $something"
+
+    def belongs = s"From infix class **>, with members ${memberA.toString}, ${memberB.toString}"
+  }
+
+  val compositeType: ==>[Int, String] = **>[Int, String](12, "Just another member")
+  // As val compositeType is a super type of `**>`
+  // It will not have access to `belongs` method
+  println(compositeType +++ "Hi!!")
 
   // simple way
-  val simpleComposite: Composite[Int, String] = new Composite[Int, String]
+  val simpleComposite: **>[Int, String] = **>[Int, String](3, "Simple")
   // fancy way with Infix types
-  val Composite: Int Composite String = new Composite[Int, String]
+  val composite: Int **> String = **>[Int, String](5, "Infix")
+  println(simpleComposite +++ "Not that simple!!")
+  println(simpleComposite.belongs)
+  println(composite +++ "Quite powerful")
+  println(composite.belongs)
 
   @targetName("-->")
   class -->[A, B]

@@ -39,7 +39,6 @@ object L1DarkSugar extends App {
 
   // Syntax Sugar 2. Single abstract method pattern
   trait Action {
-
     // This is a single abstract method
     def act(n: Int): Int
 
@@ -123,8 +122,10 @@ object L1DarkSugar extends App {
 
   // Syntax Sugar 3.
   // :: and #:: methods are special
-  val prependedList = 2 :: List(3, 4)
+  // we would assume that the compiler rewrites the below as
   // 2.::(List(3,4)), but there is no :: method in Int object
+  // :: method is a part of the List object
+  val prependedList = 2 :: List(3, 4)
   // compiler rewrites the above as:
   // List(3,4).::(2)
   // Scala spec: last character of the operator determines its associativity
@@ -139,7 +140,7 @@ object L1DarkSugar extends App {
   // Implementing our own custom symbol method `-->:`
   class MyStream[T](val value: T, val next: Option[MyStream[T]] = None) {
     @targetName("-->:")
-    def -->:(value: T): MyStream[T] = new MyStream(value, Some(this))
+    infix def -->:(value: T): MyStream[T] = new MyStream(value, Some(this))
 
     override def toString: String = {
       @tailrec
@@ -160,13 +161,13 @@ object L1DarkSugar extends App {
   val myStream = 1 -->: 2 -->: 3 -->: MyStream.empty[Int]
   println(myStream.toString)
 
-  // Syntax Sugar 4. Multi-word method naming
-  class TeamGirl(name: String) {
-    def `and then said`(gossip: String): Unit = println(s"$name said $gossip")
+  // Syntax Sugar 4. Multi-word identifiers
+  class Talker(name: String) {
+    infix def `then said`(gossip: String): Unit = println(s"$name said $gossip")
   }
 
-  val lilly = new TeamGirl("Lilly")
-  lilly `and then said` "Scala is sweet"
+  val lilly = new Talker("Lilly")
+  lilly `then said` "Scala is sweet"
 
   // Syntax Sugar 5. Generics.: Infix types
   class Composite[A, B]

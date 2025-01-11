@@ -139,7 +139,7 @@ object L1DarkSugar extends App {
 
   // Implementing our own custom symbol method `-->:`
   class MyStream[T](val value: T, val next: Option[MyStream[T]] = None) {
-    @targetName("-->:")
+    @targetName("appendMyStream")
     infix def -->:(value: T): MyStream[T] = new MyStream(value, Some(this))
 
     override def toString: String = {
@@ -179,18 +179,19 @@ object L1DarkSugar extends App {
   println(`Content-Type`.`application/json`)
 
   // Syntax Sugar 5. Generics.: Infix types
-  @targetName("==>")
+  // `@targetName` is used to provide more readable names when
+  // Java byte codes are generated, so they should be descriptive
+  // It makes it more usable for Java libraries too (Java interop)
+  @targetName("InfixTrait")
   infix trait ==>[A, B] {
-    @targetName("+++")
-    infix def `+++`(something: String): String
+    @targetName("infixMethod")
+    infix def `+++`(something: String): String = s"Infix trait, $something"
   }
 
-  @targetName("**>")
+  @targetName("InfixClass")
   case class **>[A, B](memberA: A, memberB: B) extends ==>[A, B] {
-    @targetName("+++")
-    override def `+++`(something: String): String = s"From infix trait, $something"
 
-    def belongs = s"From infix class **>, with members ${memberA.toString}, ${memberB.toString}"
+    def belongs = s"Infix class **>, with members ${memberA.toString}, ${memberB.toString}"
   }
 
   val compositeType: ==>[Int, String] = **>[Int, String](12, "Just another member")
@@ -207,12 +208,7 @@ object L1DarkSugar extends App {
   println(composite +++ "Quite powerful")
   println(composite.belongs)
 
-  @targetName("-->")
-  class -->[A, B]
-
-  val towards: Int --> String = new-->[Int, String]
-
-  // Syntax Sugar 6. update() method, special like apply()
+  // Syntax Sugar 6. update() method, it is special like apply()
   val anArray = Array(1, 2, 3)
   anArray(2) = 7 // rewritten as anArray.update(index, value)
   // update() is used in mutable collections,

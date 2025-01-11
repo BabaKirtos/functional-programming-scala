@@ -39,25 +39,33 @@ object L1DarkSugar extends App {
 
   // Syntax Sugar 2. Single abstract method pattern
   trait Action {
+
+    // This is a single abstract method
     def act(n: Int): Int
+
+    def multiplyTwo(n: Int) = n * 2
   }
 
-  // Initializing Action
+  // Initializing Action using a single abstract method pattern
   val anInstance = new Action {
     override def act(n: Int): Int = n + 1
   }
   println(anInstance.act(9))
+  println(anInstance.multiplyTwo(9))
 
   // lambda also works in initializing Action
-  // as Action has only one method
   // We need to provide the return type
   val aFunkyInstance: Action = (x: Int) => x + 1
   println(aFunkyInstance.act(3))
+  println(aFunkyInstance.multiplyTwo(3))
 
   // we can define a method to apply act method
-  def aFunkyMethod(x: Int): Int = aFunkyInstance.act(x)
+  def applyAct(x: Int): Int = aFunkyInstance.act(x)
 
-  println(aFunkyMethod(5))
+  def applyMultiplyTwo(x: Int) = aFunkyInstance.multiplyTwo(x)
+
+  println(applyAct(5))
+  println(applyMultiplyTwo(5))
 
   // The same is applicable for an Abstract class
   abstract class AnAbstractType {
@@ -69,7 +77,7 @@ object L1DarkSugar extends App {
   val anAbstractInstance: AnAbstractType = (a: Int) => println(s"$a is a number")
   anAbstractInstance.f(2)
 
-  // example: Runnable
+  // example: Runnable, this is where single abstract method patterns are useful
   val aThread = new Thread(new Runnable {
     override def run(): Unit = {
       println("Hi Scala, from a new thread!!")
@@ -191,5 +199,4 @@ object L1DarkSugar extends App {
 
   val aMutableContainer = new Mutable
   aMutableContainer.member = 42 // rewritten as aMutableContainer.member_=(42)
-
 }

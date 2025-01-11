@@ -236,11 +236,7 @@ object L1DarkSugar extends App {
 
   // Syntax sugar 8. Variable arguments (varargs)
   // We can pass any number of arguments
-  def methodWithVarargs(args: Int*) = args match {
-    case list: List[Int] => list.toString()
-    case arraySeq: ArraySeq[Int] => arraySeq.toString()
-    case x => x.toString()
-  }
+  def methodWithVarargs(args: Int*) = args.toString()
 
   println(methodWithVarargs(1, 2, 3))
   println(methodWithVarargs())
@@ -250,8 +246,9 @@ object L1DarkSugar extends App {
   val listParameter = List(1, 2, 3, 4, 5, 6)
   // the * will unwrap and pass the args to the method
   // Interestingly List is not converted to an ArraySeq
-  // This could be because they belong to the same super type
-  // TODO: Research why this happens
+  // This is because both belong to the same super type Seq
+  // * is nothing more than a syntactic sugar
   println(methodWithVarargs(listParameter *))
+  // The below shows up as a List
   println(methodWithVarargs(Seq(3, 4, 5) *))
 }

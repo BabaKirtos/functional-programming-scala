@@ -1,6 +1,7 @@
 package AdvancedLectures.part1
 
 import scala.annotation.{tailrec, targetName}
+import scala.collection.immutable.ArraySeq
 import scala.util.Try
 
 object L1DarkSugar extends App {
@@ -108,7 +109,7 @@ object L1DarkSugar extends App {
   - If the threads are non-daemon threads, which all user defined threads are by default,
   then their execution is done in parallel to the main thread.
   Also, start() and run() seem to behave differently, we can research that later.
-  TODO - What is the difference between start() and run() on threads:
+  What is the difference between start() and run() on threads?
   - thread.start(): This method is used to begin the execution of a thread
   by calling the run() method asynchronously. When you call start(), the thread's run()
   method is executed in a separate thread of control. This means that the code inside
@@ -181,7 +182,7 @@ object L1DarkSugar extends App {
   // Syntax Sugar 5. Generics.: Infix types
   // `@targetName` is used to provide more readable names when
   // Java byte codes are generated, so they should be descriptive
-  // It makes it more usable for Java libraries too (Java interop)
+  // It will be useful to debug bytecode and for Java libraries too (Java interop)
   @targetName("InfixTrait")
   infix trait ==>[A, B] {
     @targetName("infixMethod")
@@ -210,20 +211,47 @@ object L1DarkSugar extends App {
 
   // Syntax Sugar 6. update() method, it is special like apply()
   val anArray = Array(1, 2, 3)
+  anArray.update(0, 9)
   anArray(2) = 7 // rewritten as anArray.update(index, value)
   // update() is used in mutable collections,
   // remember to implement apply and update methods
+  println(anArray.mkString("Array(", ", ", ")"))
 
   // Syntax sugar 7. Setters for mutable collections
   class Mutable {
+    // encapsulated data
     private var internalMember: Int = 0 // private for OOP encapsulation
 
     def member: Int = internalMember // "getter"
 
+    // `_=` is used for setting, no space between _, and =
+    // both methods should have the same name
     def member_=(value: Int): Unit =
       internalMember = value // "setter"
   }
 
   val aMutableContainer = new Mutable
   aMutableContainer.member = 42 // rewritten as aMutableContainer.member_=(42)
+  println(aMutableContainer.member)
+
+  // Syntax sugar 8. Variable arguments (varargs)
+  // We can pass any number of arguments
+  def methodWithVarargs(args: Int*) = args match {
+    case list: List[Int] => list.toString()
+    case arraySeq: ArraySeq[Int] => arraySeq.toString()
+    case x => x.toString()
+  }
+
+  println(methodWithVarargs(1, 2, 3))
+  println(methodWithVarargs())
+  println(methodWithVarargs(5, 6, 7, 8, 9))
+
+  // We can unwrap a collection and dynamically pass them
+  val listParameter = List(1, 2, 3, 4, 5, 6)
+  // the * will unwrap and pass the args to the method
+  // Interestingly List is not converted to an ArraySeq
+  // This could be because they belong to the same super type
+  // TODO: Research why this happens
+  println(methodWithVarargs(listParameter *))
+  println(methodWithVarargs(Seq(3, 4, 5) *))
 }

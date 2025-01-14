@@ -65,7 +65,7 @@ object P1C2GettingStartedFP {
     msg.format(n, fibonacci(n))
   }
 
-  // All the above format methods are similar
+  // All the above format methods are similar, 
   // So we can replace them with a HoF
   private def formatResult(s: String, n: Int, f: Int => Int) = {
     val msg = "The %s of %d is %d."
@@ -136,7 +136,7 @@ object P1C2GettingStartedFP {
   /*
   * The implementations of members within an object can refer to
   * each other unqualified (without prefixing the object name), but
-  * if needed they have access to their enclosing object using a special name: this
+  * if needed, they have access to their enclosing object using a special name: this
   * */
 
   /*

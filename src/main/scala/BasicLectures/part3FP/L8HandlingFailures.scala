@@ -64,7 +64,7 @@ object L8HandlingFailures extends App {
       Try(getConnection(host, port))
   }
 
-  // if you get the html page from the connection
+  // if you get the HTML page from the connection, 
   // print it to the console
   // call renderHTML
   //  val tryConnection = HttpService.getSafeConnection(hostname, port)

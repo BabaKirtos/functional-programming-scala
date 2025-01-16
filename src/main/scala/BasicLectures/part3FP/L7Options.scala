@@ -11,7 +11,7 @@ object L7Options extends App {
 
   println(myFirstOption)
   // doesn't throw an exception
-  // But points to None object which extends Option[Nothing]
+  // But points to a None object which extends Option[Nothing]
   println(noValue)
 
   // unsafe APIs

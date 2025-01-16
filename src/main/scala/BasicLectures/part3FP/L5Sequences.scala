@@ -5,7 +5,7 @@ import scala.util.Random
 object L5Sequences extends App {
 
   // Seq
-  // they have well defined order
+  // they have a well-defined order
   // they are indexed
   val aSeq = Seq(1, 3, 2, 4)
   println(aSeq)
@@ -18,7 +18,7 @@ object L5Sequences extends App {
   // Ranges
   val aRange: Seq[Int] = 1 to 10
   val aNewRange: Seq[Int] = 1 until 10
-  // 'to' is inclusive whereas 'until' is non inclusive
+  // 'to' is inclusive whereas 'until' is non-inclusive
   aRange.foreach(println)
   aNewRange.foreach(println)
   // iterate using ranges
@@ -41,7 +41,7 @@ object L5Sequences extends App {
   // Arrays - are mutable
   val numbers = Array(1, 2, 3, 4)
   val threeElements = Array.ofDim[Int](3)
-  println(threeElements)
+  println(threeElements.mkString("Array(", ", ", ")"))
   threeElements.foreach(println)
   //mutation
   println(numbers.mkString(" "))
@@ -56,7 +56,7 @@ object L5Sequences extends App {
   val aVector: Vector[Int] = Vector(1, 2, 3, 4)
   println(aVector)
 
-  // performance test: Vectors vs Lists
+  // performance test: Vectors vs. Lists
   val maxRuns = 1000 // number of runs
   val maxCapacity = 1000000 // max index of the collect
 
@@ -76,9 +76,9 @@ object L5Sequences extends App {
   val numbersVector = (1 to maxCapacity).toVector
 
   // keeps reference to tails
-  // updating an element in the middle takes long
+  // updating an element in the middle takes a long time
   println(getWriteTime(numbersList))
-  // depth of the tree is small
+  // the depth of the tree is small
   // needs to replace an entire 32-element chunk
   println(getWriteTime(numbersVector))
 

@@ -48,8 +48,7 @@ object L3ScalaObjects {
     val bobby = Person(olive, dave)
   }
 
-  // Scala Applications = scala object with
-  // the entrance point :
+  // Scala Applications = scala object with the entrance point:
   // def main (args: Array[String]): Unit = {code}
   // we need to write this if we do not include extends App
   // The App already has the main method in it
@@ -58,5 +57,4 @@ object L3ScalaObjects {
 
   // Combination of objects and classes with same names are called COMPANIONS
   // they share each others private def and vals?
-
 }

@@ -35,9 +35,9 @@ object L5Traits extends App {
 
   croc eat dog
 
-  // traits vs abstract classes
+  // traits vs. abstract classes
   // 1. traits do not have constructor parameters - possible in scala 3
   // 2. multiple traits may be inherited by the same class, but only 1 class
-  // 3. traits = behaviour, abstract class is a type of thing
+  // 3. traits = behavior, abstract class is a type of thing
 
 }

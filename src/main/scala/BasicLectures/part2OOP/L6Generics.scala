@@ -13,7 +13,7 @@ object L6Generics extends App {
 
   class MyList[+A] {
     // use the type parameter +A
-    // The +A is a generic covariant type
+    // +A is a generic covariant type
     // traits can also be generic
     def add[B >: A](element: B): MyList[B] = ???
   }
@@ -54,12 +54,12 @@ object L6Generics extends App {
   // bounded type
   // allows us to use generics
   // which are subtype or supertype of a type
-  // cage is upper bounded type
-  class Cage[A <: Animal](animal: A) // cage accepts a Type which is a subtype of Animal
+  // cage is upper-bounded type
+  class Cage[A <: Animal](animal: A) // cage accepts a Type, which is a subtype of Animal
   val cage = new Cage(new Dog)
   class Car
   // val newCage = new Cage(new Car) // this wont work
-  // as car is not a subtype of animal
+  // as a car is not a subtype of animal
 
   // lower bounded type
   class Loki[A >: Dog](dog: A)

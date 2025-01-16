@@ -18,7 +18,7 @@ object L4Inheritance extends App {
 
   val cat = new Cat
   cat.crunch
-//  cat.eat // as eat is protected it is not accessible from this scope
+//  cat.eat // as eat is protected, it is not accessible from this scope
 
   // constructors
   class Person(name: String, age: Int) {
@@ -29,12 +29,12 @@ object L4Inheritance extends App {
   // Overriding
   class Dog(override val creatureType: String) extends Animal {
     override def eat: Unit = {
-      // super refers to the super class
+      // `super` refers to the super class
       super.eat
       println("crunch")
     }
     override def newEat: Unit = {
-      // super refers to the super class
+      // `super` refers to the super class
       super.newEat
       println("crunch")
     }
@@ -49,8 +49,8 @@ object L4Inheritance extends App {
   unknownAnimal.newEat
 
   // Preventing Overrides:
-  // 1. use final keyword for def in super class
-  // 2. use final keyword in class definition
-  // 3. seal the class  = extends classes in this file but prevents extension in other files
+  // 1. Use the final keyword for def in super class
+  // 2. Use the final keyword in class definition
+  // 3. Seal the class = extends classes in this file but prevents extension in other files
 
 }

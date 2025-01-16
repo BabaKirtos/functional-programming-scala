@@ -54,14 +54,13 @@ class Person(name: String, val age: Int) {
     - authorAge (at time of release)
     - isWrittenBy (author)
     - copy (new year of release) = new instance of novel with new year
- */
-/*
+
   Counter Class
     - receives an int value
     - method current count
     - method to increment/decrement => new Counter
     - overload inc/dec to receive an amount
- */
+*/
 
 object L1OopBasics extends App {
 

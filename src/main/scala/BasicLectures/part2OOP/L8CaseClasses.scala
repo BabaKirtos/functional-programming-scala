@@ -6,7 +6,7 @@ object L8CaseClasses extends App {
 
   // 1. Class parameters are promoted to fields
   val jim = new Person("Jim", 34)
-  println(jim.name) // this wont be valid for normal classes
+  println(jim.name) // this won't be valid for normal classes
 
   // 2. A sensible toString factory method
   println(jim.toString)
@@ -25,7 +25,7 @@ object L8CaseClasses extends App {
   // 5. Have companion objects automatically created
   val thePerson = Person
   val mary = Person("Mary", 23) // using the apply method as constructor
-  println(mary) // In practice we don't use 'new' with case classes
+  println(mary) // In practice, we don't use 'new' with case classes
 
   // 6. They are serializer-able
   // We can send instances of case classes through the network and
@@ -40,5 +40,4 @@ object L8CaseClasses extends App {
   case object UnitedKingdom {
     def name: String = "The United Kingdom of Great Britain"
   }
-
 }

@@ -27,7 +27,15 @@ case class Just[+A](value: A) extends Maybe[A] {
 
 object TestMaybe extends App {
 
-  val maybeList = List(new Just[Int](3), MaybeNot, new Just[Int](4), MaybeNot, new Just[Int](5), MaybeNot, new Just[Int](6))
+  val maybeList = List(
+    new Just[Int](3),
+    MaybeNot,
+    new Just[Int](4),
+    MaybeNot,
+    new Just[Int](5),
+    MaybeNot,
+    new Just[Int](6))
+
   println(maybeList.map(_.map(_ * 2)))
   println(maybeList.map(_.flatMap((x: Int) => new Just[Boolean](x % 2 == 0))))
   println(maybeList.map(_.filter(_ % 2 == 0)))

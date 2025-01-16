@@ -52,15 +52,15 @@ object L4Recursion extends App {
 
   println(stringTail("Baba", 10))
 
-  def anotherFibbo(n: Int): Int = {
+  def anotherFibo(n: Int): Int = {
     @tailrec
-    def aFibboHelper(n: Int, result: Int): Int = {
-      if (n <= 1) result
-      else aFibboHelper(n - 2, result + (n - 1) + (n - 2))
+    def aFiboHelper(x: Int, prev: Int, current: Int): Int = {
+      if (x <= 0) prev
+      else aFiboHelper(x - 1, current, prev + current)
     }
 
-    aFibboHelper(n, result = 0)
+    aFiboHelper(n, 0, 1)
   }
 
-  println(anotherFibbo(10))
+  println(anotherFibo(10))
 }

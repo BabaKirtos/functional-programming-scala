@@ -13,9 +13,9 @@ object L5CallByNameVsValue extends App {
     println("by name : " + x)
   }
 
-  // System.nanotime() tells current system time in nano seconds
+  // System.nanotime() tells current system time in nanoseconds
   // that why we choose long as parameter input
-  // when calling by name the expression is passed, whereas in value the value is passed
+  // when calling by name the expression is passed, whereas in value the value is passed, 
   // that's why we see a change in time for call by name
   callByValue(System.nanoTime())
   callByName(System.nanoTime())

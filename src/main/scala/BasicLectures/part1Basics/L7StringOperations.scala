@@ -13,7 +13,7 @@ object L7StringOperations extends App {
   println(str.startsWith("Hello"))
   // Returns a boolean
   println(str.replace(" ", "-"))
-  // replace with a new character or string
+  // replace it with a new character or string
   println(str.toLowerCase())
   println(str.toUpperCase())
   println(str.length)
@@ -22,8 +22,8 @@ object L7StringOperations extends App {
   val aNumber = aNumberString.toInt
 
   println('a' +: aNumberString :+ 'z')
-  // +: prepending a character to string
-  // :+ is appending
+  // +: used to prepend a character to a string
+  // `:+` is used appending
   println(str.reverse)
   println(str.take(2))
 

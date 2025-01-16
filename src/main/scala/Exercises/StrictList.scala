@@ -1,5 +1,7 @@
 package Exercises
 
+import scala.annotation.tailrec
+
 object StrictList extends App {
 
   trait StrictList[A] {
@@ -18,21 +20,21 @@ object StrictList extends App {
   }
 
   // we can define generic methods
+  @tailrec
   def lastElement[A](elem: StrictList[A]): A = {
-    if (elem == EmptyStrict())
-      throw new NoSuchElementException
-    else if (elem.tail == EmptyStrict())
-      elem.head
-    else
-      lastElement(elem.tail)
+    if (elem == EmptyStrict()) throw new NoSuchElementException
+    else if (elem.tail == EmptyStrict()) elem.head
+    else lastElement(elem.tail)
   }
 
   val listOfIntegers: StrictList[Int] =
-    new ConsStrict(1, new ConsStrict(2, new ConsStrict(3, new ConsStrict(4, EmptyStrict()))))
-  val listOfStrings: StrictList[String] = new ConsStrict(
-    "Hi",
-    new ConsStrict("Hello", new ConsStrict("new", new ConsStrict("back", EmptyStrict()))))
+    ConsStrict(1, ConsStrict(2, ConsStrict(3, ConsStrict(4, EmptyStrict()))))
+  val listOfStrings: StrictList[String] =
+    ConsStrict("Hi",
+      ConsStrict("Hello",
+        ConsStrict("new",
+          ConsStrict("back", EmptyStrict()))))
 
-  println(lastElement(listOfStrings))
   println(lastElement(listOfIntegers))
+  println(lastElement(listOfStrings))
 }

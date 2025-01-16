@@ -69,10 +69,10 @@ object playground {
 
       @tailrec
       def compare(
-        strs: Array[String],
-        outer: Int = 0,
-        inner: Int,
-        result: Boolean = false): Boolean = {
+                   strs: Array[String],
+                   outer: Int = 0,
+                   inner: Int,
+                   result: Boolean = false): Boolean = {
         if (outer == strs.length - 1) result
         else if (strs(outer)(inner) != strs(outer + 1)(inner)) false
         else compare(strs, outer + 1, inner, strs(outer)(inner) == strs(outer + 1)(inner))
@@ -85,7 +85,6 @@ object playground {
       }
 
       if (strs.length == 1 && strs(0).length == 1) strs(0) else helper(strs)
-
     }
 
     val strs: Array[String] = Array("flower", "flow", "flowing", "flood")
@@ -151,12 +150,12 @@ object playground {
     println(sqrt(1.0e-20))
     println(sqrt(1.0e50))
 
-    // Question: Get element in pascal's triangle with rows and columns as input starting at 0
+    // Question: Get an element in pascal's triangle with rows and columns as input starting at 0
     // 1
     // 1 1
     // 1 2 1
-    // 1 3 3  1
-    // 1 4 6  4  1
+    // 1 3 3 1
+    // 1 4 6 4 1
     // 1 5 10 10 5 1
     // 1 6 15 20 15 6 1
 
@@ -175,6 +174,7 @@ object playground {
     //    }
 
     def moveZeroes(nums: Array[Int]): Unit = {
+      @tailrec
       def HelperZ(nums: Array[Int], i: Int, k: Int): Unit = {
         if (i < nums.length) {
           if (nums(i) != 0) {
@@ -191,7 +191,12 @@ object playground {
 
     def myFunc(ele: List[Any]): (List[Int], List[Float], List[String]) = {
 
-      def Helper(elem: List[Any], intA: List[Int] = Nil, floatA: List[Float] = Nil, stringA: List[String] = Nil): (List[Int], List[Float], List[String]) = {
+      @tailrec
+      def Helper(
+                  elem: List[Any],
+                  intA: List[Int] = Nil,
+                  floatA: List[Float] = Nil,
+                  stringA: List[String] = Nil): (List[Int], List[Float], List[String]) = {
         elem match {
           case Nil => (intA.reverse, floatA.reverse, stringA.reverse)
           case head :: tail => head match
@@ -204,7 +209,6 @@ object playground {
 
       Helper(ele, Nil, Nil, Nil)
     }
-
 
     val myList = List(1, 2.5f, "hello", 3.14f, "world", 42)
     val result2 = myFunc(myList)
@@ -248,7 +252,7 @@ object playground {
     println(s"Input List: $inputList")
     println(s"Sum of Prime Numbers: $sum")
 
-    // Cursor sample, if condition is true then even, else odd
+    // Cursor sample, if the condition is true then even, else odd
     def someList(input: List[Int], condition: Boolean, limit: Int, cursor: Option[Int] = None): (List[Int], Option[Int]) = {
       import scala.util.Random
 
@@ -295,7 +299,7 @@ object playground {
 
     //    println(result)
 
-    // implement calculate, it takes a function as a argument, also int as a argument and prints after applying
+    // implement calculate, it takes a function as an argument, also int as an argument and prints after applying
     def calculate(f: (Int, Int) => Int)(y: Int)(z: Int): Unit =
       println(f(y, z))
 
@@ -303,7 +307,8 @@ object playground {
 
     add2(7)
 
-    // implement a queue using a stack ds, use pop push, enqueue - insert(push), dequeue - removes (pop) - this should be a fifo lifo
+    // implement a queue using a stack ds, use pop push, enqueue - insert(push), dequeue - removes (pop)
+    // this should be a fifo lifo
     case class MyQueue(a: mutable.Stack[Int]) {
 
       def enqueue(x: Int) = a.push(x) // appends at the end
@@ -336,7 +341,7 @@ object playground {
       } // returns the last element of MyQueue
     }
 
-    // table 1 - 10 records, table 2 - 50 records, table 1 left join on table 2
+    // table 1-10 records, table 2-50 records, table 1 left join on table 2
 
     // Employee
     //EID	MID
@@ -360,7 +365,7 @@ object playground {
     //P1	C2	100
     //P2	C1	100
 
-    // Policy Number	No. of Coverages	C1	C2	Total Premium
+    // Policy Number - Number of Coverages	C1	C2	Total Premium
     //P1	2	1	1	200
     //P2	1	1	0	100
 
@@ -400,7 +405,7 @@ object playground {
     // List(1,2,0) List(3,6,7,8) -> List(1,3,2,6,0,7,8)
 
     // Q. Write a program to count the frequency of each element in a list.
-    // nums = [1, 2, 3, 2, 1, 3, 2, 4, 5, 4]
+    // Nums = [1, 2, 3, 2, 1, 3, 2, 4, 5, 4]
     // List((1, 2), (2, 3) .. )
 
     def frequency1(in: List[Int]): List[(Int, Int)] = {
@@ -432,9 +437,10 @@ object playground {
 
     def palindromeCheck(input: String): Boolean = {
 
+      @tailrec
       def helper(in: String, counter: Int = 0, acc: Boolean = false): Boolean = {
-        if (counter == (in.size / 2)) acc
-        else helper(in, counter + 1, in(counter) == in((in.size - 1) - counter))
+        if (counter == (in.length / 2)) acc
+        else helper(in, counter + 1, in(counter) == in((in.length - 1) - counter))
       }
 
       helper(input)
@@ -443,8 +449,9 @@ object playground {
     val x = "malayalam"
     println(palindromeCheck(x))
 
-    // List of numbers, we want to find last element
+    // List of numbers, we want to find the last element
 
+    @tailrec
     def lastElement(in: List[Int]): Int = {
       if (in.tail == Nil) in.head
       else lastElement(in.tail)
@@ -454,18 +461,20 @@ object playground {
     println(lastElement(listNums))
 
     //Q. we need to find the list where we need to compare the elements right
-    //to that and largest of all elements should come on the place of that element .
+    // to that, and the largest of all elements should come on the place of that element.
     //
-    //list1 = [1,2,3,4,5]
-    //output = [5,5,5,5,5]
+    // list1 = [1,2,3,4,5]
+    // output = [5,5,5,5,5]
 
     def listReplacer(input: List[Int]): List[Int] = {
 
+      @tailrec
       def findMax(in: List[Int], acc: Int = -1): Int = {
         if (in.tail == Nil) if (in.head > acc) in.head else acc
         else findMax(in.tail, if (in.head > acc) in.head else acc)
       }
 
+      @tailrec
       def helper(in: List[Int], size: Int, max: Int, acc: List[Int] = List.empty): List[Int] = {
         if (in.tail == Nil) acc ++ List(max)
         else helper(in.tail, size, max, acc ++ List(max))
@@ -487,6 +496,7 @@ object playground {
 
     def customReverse(input: String): String = {
 
+      @tailrec
       def helper(in: String, size: Int, counter: Int = 0, acc: String = ""): String = {
         if (counter == size) acc
         else helper(in, size, counter + 1, acc + in((size - 1) - counter))

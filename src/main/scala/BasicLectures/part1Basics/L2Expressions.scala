@@ -2,7 +2,7 @@ package BasicLectures.part1Basics
 
 object L2Expressions extends App {
 
-  // compiler knows the type of expression
+  // the compiler knows the type of expression
   // like the below expression will return int
   val x = 1 + 2 // Expression
   println(x)
@@ -19,18 +19,19 @@ object L2Expressions extends App {
   println(true && false)
   println(true || false)
 
+  // Unit is similar to void in Java
   def add(a: Int, b: Int): Unit = {
-    a + b
+    println(a + b)
   }
 
   val added: Unit = add(2, 3)
 
-  // operations with a variable
-  var aVariable = 2
+  // operations with a mutable variable
+  var aVariable = 20
   aVariable /= 2 // also works with += -= *= /= .. side effects
   println(aVariable)
 
-  // Instructions vs Expressions
+  // Instructions vs. Expressions
   // an instruction is something we tell the computer to do
   // an expression is something that has a value or a type (evaluated)
 
@@ -39,9 +40,9 @@ object L2Expressions extends App {
   val aConditionedValue = if (aCondition) 5 else 3
   println(aConditionedValue)
   // unlike in other languages
-  // where we say if a condition is true do this
-  // in scala we return a value
-  // therefore we call it if expression
+  // where we say if a condition is true do this (instructions)
+  // in scala, we return a value after evaluation of RHS,
+  // therefore, we call it an if expression
   // All `if` expressions must have an `else` block
   println(if (aCondition) 5 else 3)
 
@@ -54,12 +55,12 @@ object L2Expressions extends App {
     a += 1
   }
 
-  // EVERYTHING in scala is an EXPRESSION, ie everything will return something
+  // EVERYTHING in scala is an EXPRESSION, i.e., everything will return something
   val aWeirdValue = aVariable = 3 // Unit = void ****
-  // unit is a special type in scala which does not return anything
+  // unit is a special type in scala that does not return anything
   println(aWeirdValue)
 
-  // side effects in scala are expression returning unit
+  // side effects in scala are expressions returning unit
   println({
     aVariable = 6
   }) // reassignment of a var is also unit type
@@ -69,9 +70,15 @@ object L2Expressions extends App {
 
   // Code blocks
   val aCodeBlock = {
-    val y = 2
-    val z = y + 1
-    if (z > 2) "hi" else 5
+    // Note that x was already defined outside the scope
+    // of this code block, but we are allowed to redefine it
+    // within the block
+    val x = 2
+    val y = x + 1
+    // Any is the mother of all types
+    // Highest in the type hierarchy
+    // It can hold any type
+    val z: Any = if (y > 2) "hi" else 5
     9 // this will be returned
   }
   println(aCodeBlock)

@@ -10,6 +10,7 @@ object playground {
 
     println("Hello World!")
 
+    @tailrec
     def loop(i: Int = 0): Unit = {
       println("Hi") // executing a side effect
       if (i < 10)
@@ -27,6 +28,7 @@ object playground {
     val target = 6
 
     def twoSum(nums: Array[Int], target: Int): Array[Int] = {
+      @tailrec
       def helper(nums: Array[Int], i1: Int, i2: Int, t: Int, inc: Int): Array[Int] = {
         if (nums(i1) + nums(i2) == t) Array(i1, i2)
         else if (i2 == nums.length - 1) helper(nums, i1 + 1, i1 + 2, t, 1)
@@ -40,6 +42,7 @@ object playground {
 
     // LeetCode question 2: Palindrome number
     def isPalindrome(x: Int): Boolean = {
+      @tailrec
       def reverse(y: Int, num: Int = 0): Int = {
         if (y < 1) num
         else reverse(y / 10, (y % 10) + (num * 10))
@@ -55,6 +58,7 @@ object playground {
     // LeetCode question 3: Longest common prefix
     def longestCommonPrefix(strs: Array[String]): String = {
 
+      @tailrec
       def minLetters(strs: Array[String], index: Int = 0, acc: Int): Int = {
         if (index == strs.length) acc
         else if (strs(index).length < acc) minLetters(strs, index + 1, strs(index).length)
@@ -63,6 +67,7 @@ object playground {
 
       val minimumLetters = minLetters(strs, acc = strs(0).length)
 
+      @tailrec
       def compare(
         strs: Array[String],
         outer: Int = 0,
@@ -73,6 +78,7 @@ object playground {
         else compare(strs, outer + 1, inner, strs(outer)(inner) == strs(outer + 1)(inner))
       }
 
+      @tailrec
       def helper(strs: Array[String], accu: String = "", index: Int = 0): String = {
         if (index == minimumLetters || !compare(strs, inner = index)) accu
         else helper(strs, accu + strs(0)(index), index + 1)

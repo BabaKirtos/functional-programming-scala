@@ -29,9 +29,9 @@ class Person(name: String, val age: Int) {
     println(s"${this.name} says: Hi $name")
   }
 
-  // name will be picked from class parameter in below code
+  // name will be picked from class parameter in the below code
   // 'this' keyword is implied in the below case
-  // repeating function names with different parameter is called overloading
+  // repeating function name with different parameter is called overloading
   def greet(): Unit = println(s"Hi, I'm $name, and I'm $age years old")
 
   // multiple constructors

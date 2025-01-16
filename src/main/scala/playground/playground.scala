@@ -29,13 +29,13 @@ object playground {
 
     def twoSum(nums: Array[Int], target: Int): Array[Int] = {
       @tailrec
-      def helper(nums: Array[Int], i1: Int, i2: Int, t: Int, inc: Int): Array[Int] = {
-        if (nums(i1) + nums(i2) == t) Array(i1, i2)
-        else if (i2 == nums.length - 1) helper(nums, i1 + 1, i1 + 2, t, 1)
-        else helper(nums, i1, i1 + inc, t, inc + 1)
+      def helper(nums: Array[Int], i1: Int, i2: Int, counter: Int = 1): Array[Int] = {
+        if (nums(i1) + nums(i2) == target) Array(i1, i2)
+        else if (i2 == nums.length - 1) helper(nums, i1 + 1, i1 + 2)
+        else helper(nums, i1, i1 + counter, counter + 1)
       }
 
-      helper(nums, 0, 1, target, 1)
+      helper(nums, 0, 1)
     }
 
     println(twoSum(nums, target).mkString("Array(", ", ", ")"))

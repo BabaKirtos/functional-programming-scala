@@ -21,19 +21,21 @@ object L3Functions extends App {
 
   def aRepeatedFunction(aString: String, n: Int): String = {
     if (n == 1) // think about the end condition
-      n + " " + aString
+      n.toString + " " + aString
     else // think about iteration
-      n + " " + aString + " " + aRepeatedFunction(aString, n - 1)
+      n.toString + " " + aString + " " + aRepeatedFunction(aString, n - 1)
   }
+
   println(aRepeatedFunction("baba", 5))
-  // When you need loops use recursion
+  // Use loops instead of recursion as they avoid variable mutation,
   // this is fundamental to functional programming
   // recursive functions need a return type
 
   def sideEffect(aString: String): Unit = {
     println(aString)
   }
-  sideEffect("Side Effects are bad")
+
+  sideEffect("Side Effects are bad, but necessary")
 
   // we can define auxiliary functions within functions
   def aBigFunc(a: Int): Int = {
@@ -43,30 +45,29 @@ object L3Functions extends App {
 
     aSmallFunc(a, a - 1)
   }
+
   println(aBigFunc(10))
 
   // Exercises:
-
   def aGreeting(name: String, age: Int): Unit = {
     println(f"Hi, my name is $name, and I'm $age years old!")
   }
+
   aGreeting("Baba", 10)
 
   def aFact(n: Int): Int = {
-    if (n <= 0)
-      1
-    else
-      n * aFact(n - 1)
+    if (n <= 0) 1
+    else n * aFact(n - 1)
   }
+
   println(aFact(10))
 
-  def aFibo(n: Int): Int = {
-    if (n <= 2)
-      1
-    else
-      aFibo(n - 1) + aFibo(n - 2)
+  def aFibonnaci(n: Int): Int = {
+    if (n <= 2) 1
+    else aFibonnaci(n - 1) + aFibonnaci(n - 2)
   }
-  println(aFibo(8))
+
+  println(aFibonnaci(8))
 
   def isPrime(n: Int): Boolean = {
     @tailrec
@@ -77,5 +78,6 @@ object L3Functions extends App {
 
     isPrimeUntil(n / 2)
   }
+
   println(isPrime(13))
 }

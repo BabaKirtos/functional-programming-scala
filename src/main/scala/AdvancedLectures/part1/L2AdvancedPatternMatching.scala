@@ -75,7 +75,7 @@ object L2AdvancedPatternMatching extends App {
   // Something we have used before is `::`
   val someList = List(1, 2, 3)
   val listPM = someList match {
-    case 1 :: rest =>  "List starting with 1"
+    case 1 :: rest =>  s"List starting with 1 and ${rest.toString()}"
     case _ => "Some List"
   }
   println(listPM)
@@ -85,4 +85,15 @@ object L2AdvancedPatternMatching extends App {
     case List(1, _*) => "List starting with 1"
     case _ => "Some List"
   }
+
+  abstract class LList[A] {
+    def head: A = throw new NoSuchElementException()
+    def tail: LList[A] = throw new NoSuchElementException()
+  }
+  case class LEmpty[A]() extends LList[A]
+  case class LCons[A](override val head: A, override val tail: LList[A]) extends LList[A]
+
+  val llist: LList[Int] = LCons(1, LCons(2, LCons(3, LEmpty())))
+
+
 }

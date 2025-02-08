@@ -506,5 +506,34 @@ object playground {
     }
 
     println(customReverse("hello"))
+
+    // Generate the next numeric palindrome
+    // Ex: input = 121, output = 131
+    // 999? -> 1001; xyzyx -> 0 == n, 1 == n-1, ...
+    // brute force
+    def generateNextPalindrome(input: Int): Int = {
+
+      @tailrec
+      def convertToDigits(in: Int, acc: List[Int] = Nil): List[Int] = {
+        if (in <= 0) acc
+        else convertToDigits(in / 10, in % 10 +: acc)
+      }
+
+      @tailrec
+      def checkPalindrome(in: List[Int], n: Int = 0, acc: Boolean = true): Boolean = {
+        if (!acc || n == in.length / 2) acc
+        else checkPalindrome(in, n + 1, in(n) == in(in.length - 1 - n))
+      }
+
+      @tailrec
+      def helper(nextNumber: Int): Int = {
+        if (checkPalindrome(convertToDigits(nextNumber))) nextNumber
+        else helper(nextNumber + 1)
+      }
+
+      helper(input + 1)
+    }
+
+    println(generateNextPalindrome(999))
   }
 }

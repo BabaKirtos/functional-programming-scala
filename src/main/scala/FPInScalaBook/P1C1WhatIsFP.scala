@@ -1,6 +1,6 @@
 package FPInScalaBook
 
-object P1C1CWhatIsFP extends App {
+object P1C1WhatIsFP extends App {
 
   trait Payments {
     def charge(cc: CreditCard, amount: Int): String = "Success"

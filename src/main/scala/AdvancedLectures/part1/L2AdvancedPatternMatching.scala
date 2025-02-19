@@ -1,5 +1,7 @@
 package AdvancedLectures.part1
 
+import scala.annotation.tailrec
+
 object L2AdvancedPatternMatching extends App {
 
   /*
@@ -86,14 +88,61 @@ object L2AdvancedPatternMatching extends App {
     case _ => "Some List"
   }
 
-  abstract class LList[A] {
-    def head: A = throw new NoSuchElementException()
-    def tail: LList[A] = throw new NoSuchElementException()
+  abstract class NewList[A] {
+    def head: A
+    def tail: NewList[A]
   }
-  case class LEmpty[A]() extends LList[A]
-  case class LCons[A](override val head: A, override val tail: LList[A]) extends LList[A]
 
-  val llist: LList[Int] = LCons(1, LCons(2, LCons(3, LEmpty())))
+  object NewList {
 
+    // This signature cannot change
+    def unapplySeq[A](list: NewList[A]): Option[Seq[A]] = {
 
+      @tailrec
+      def helper(l: NewList[A], acc: Seq[A] = Seq.empty): Seq[A] = {
+        if (l == NewEmpty()) acc.reverse
+        else helper(l.tail, l.head +: acc)
+      }
+
+      Some(helper(list))
+    }
+  }
+
+  case class NewEmpty[A]() extends NewList[A] {
+    override def head: A = throw new NoSuchElementException()
+    override def tail: NewList[A] = throw new NoSuchElementException()
+  }
+
+  case class NewCons[A](override val head: A, override val tail: NewList[A]) extends NewList[A]
+
+  val newList: NewList[Int] = NewCons(1, NewCons(2, NewCons(3, NewEmpty())))
+
+  val varargCustom = newList match {
+    case NewList(1, 2, _*) => "List starting with 1 and 2"
+    case _ => "Some List"
+  }
+
+  println(varargCustom)
+
+  // We don't always need to return an Option for the unapply method
+  // We only need to return a Type which has 2 methods, `isEmpty` and `get`
+  // Below is a custom type with these methods
+  abstract class Wrapper[T] {
+    def isEmpty: Boolean
+    def get: T
+  }
+
+  object CustomPerson {
+    def unapply(person: Person): Wrapper[String] = new Wrapper[String] {
+      override def isEmpty: Boolean = false
+      override def get: String = person.name
+    }
+  }
+
+  val customBabaPM = baba match {
+    case CustomPerson(name) if name == "Slim Shady" => s"Hi, my name is $name"
+    case _ => "Hi, my name is Slim Shady"
+  }
+
+  println(customBabaPM)
 }

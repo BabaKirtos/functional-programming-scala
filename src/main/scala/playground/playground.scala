@@ -511,6 +511,7 @@ object playground {
     // Ex: input = 121, output = 131
     // 999? -> 1001; xyzyx -> 0 == n, 1 == n-1, ...
     // brute force
+    // TODO: Solve using a lower time complexity
     def generateNextPalindrome(input: Int): Int = {
 
       @tailrec

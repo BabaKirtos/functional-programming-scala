@@ -1,6 +1,6 @@
 package AdvancedLectures.part2
 
-object Struc extends App {
+object L1PartialFunctions extends App {
 
   println("Keeping for proper file structure")
 

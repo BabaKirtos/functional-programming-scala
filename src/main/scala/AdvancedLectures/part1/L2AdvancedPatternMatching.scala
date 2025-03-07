@@ -140,7 +140,7 @@ object L2AdvancedPatternMatching extends App {
   }
 
   val customBabaPM = baba match {
-    case CustomPerson(name) if name == "Slim Shady" => s"Hi, my name is $name"
+    case CustomPerson(name) if name != "Slim Shady" => s"Hi, my name is $name"
     case _ => "Hi, my name is Slim Shady"
   }
 

@@ -2,6 +2,18 @@ package AdvancedLectures.part2
 
 object L1PartialFunctions extends App {
 
+  // Whenever we need to perform specific operations
+  // based on some condition of the argument being passed,
+  // we can use a partial function, or we want to apply the
+  // function only on a subset of the argument's range
+  val sampleFunction: Int => Int = x => x + 1
+
+  val toEven: PartialFunction[Int, Int] = {
+    case x if x % 2 == 0 => x
+    case y => sampleFunction(y)
+  }
+  println(toEven(3))
+
   // We have already seen partial functions before
   // They are defined with Pattern Matching
   val aPartialFunction: PartialFunction[Int, String] = {

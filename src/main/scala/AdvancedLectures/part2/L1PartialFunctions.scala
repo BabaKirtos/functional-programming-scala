@@ -6,21 +6,13 @@ object L1PartialFunctions extends App {
   // based on some condition of the argument being passed,
   // we can use a partial function, or we want to apply the
   // function only on a subset of the argument's range
-  val addOne: Int => Int = x => x + 1
+  val sampleFunction: Int => Int = x => x + 1
 
-  val isEvenNormal: Int => String = (x: Int) => {
-    if (x % 2 == 0) s"$x is even, adding one: ${addOne(x)}"
-    else s"$x is not even"
+  val toEven: PartialFunction[Int, Int] = {
+    case x if x % 2 == 0 => x
+    case y => sampleFunction(y)
   }
-
-  // Looks cleaner if there are more conditions
-  val isEvenPartial: PartialFunction[Int, String] = {
-    case x if x % 2 == 0 => s"$x is even, adding 1: ${addOne(x)}"
-    case y => s"$y is not even"
-  }
-
-  println(isEvenPartial(3))
-  println(isEvenPartial(4))
+  println(toEven(3))
 
   // We have already seen partial functions before
   // They are defined with Pattern Matching
@@ -28,7 +20,6 @@ object L1PartialFunctions extends App {
     case 1 => "I'm the one"
     case 2 => "Last of us"
   }
-
   println(aPartialFunction(2))
 
   // Below are some additional methods available on PartialFunctions
@@ -38,20 +29,9 @@ object L1PartialFunctions extends App {
   // We can return an Option on the PartialFunction using the lift method
   // It transforms it into a total function
   val liftedPF: Int => Option[String] = aPartialFunction.lift
-  println(liftedPF(4)) // returns None
+  println(liftedPF(4))
 
   // Chaining PartialFunctions
-  val anotherPF: PartialFunction[Int, String] = {
-    case 3 => "I'm the link"
-  }
 
-  val aPfChain: PartialFunction[Int, String] =
-    aPartialFunction
-      .orElse(anotherPF)
-      .orElse({
-        case _ => "No match found"
-      })
 
-  println(aPfChain(3))
-  println(aPfChain(4))
 }

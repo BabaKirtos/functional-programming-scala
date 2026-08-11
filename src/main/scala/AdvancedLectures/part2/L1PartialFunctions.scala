@@ -17,8 +17,8 @@ object L1PartialFunctions extends App {
   }
   println(toEven(3))
 
-  /** We have already seen partial functions before
-   * They are defined with Pattern Matching
+  /** We have already seen partial functions before,
+   * They are defined with Pattern Matching.
    * Below are some additional methods available on PartialFunctions:
    * `isDefined` method returns a boolean but will return if a default case is defined
    */
@@ -29,8 +29,8 @@ object L1PartialFunctions extends App {
   println(aPartialFunction(2))
   println(aPartialFunction.isDefinedAt(4))
 
-  /** We can return an Option on the PartialFunction using the lift method
-   * It transforms it into a total function
+  /** We can return an Option on the PartialFunction
+   * using the lift method, it transforms into a total function
    */
   val liftedPF: Int => Option[String] = aPartialFunction.lift
   println(liftedPF(4))
@@ -42,12 +42,25 @@ object L1PartialFunctions extends App {
     case _ => "Input is > 10"
   }
 
-  /** Note that the chaining is done on the partial functions with the same type
-   */
+  /** Note that the chaining is done on the partial functions with the same type */
   val pfChained: PartialFunction[Int, String] =
     aPartialFunction.orElse[Int, String](anotherPF)
+
   println(pfChained(4))
   println(pfChained(11))
   println(pfChained(1))
 
+  /** HOFs accept partial functions as arguments,
+   * because [[PartialFunction]] extends `(A => B)` or [[Function1]]
+   */
+  val aTestList = List(1, 2, 3, 4)
+  val anChangedList = aTestList.map {
+    // This is possible because of the extension
+    case x if x % 2 == 0 => "Even"
+    case _ => "Odd"
+  }
+  println(aTestList)
+  println(anChangedList)
+
+  case class Person()
 }
